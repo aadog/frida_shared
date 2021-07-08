@@ -2,6 +2,6 @@
 
 #include <frida-core.h>
 
- void hello(void) {
-
+int add(int a,int b){
+    return a+b;
 }

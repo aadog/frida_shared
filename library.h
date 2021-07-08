@@ -1,6 +1,6 @@
 #ifndef FRIDA_SHARED_LIBRARY_H
 #define FRIDA_SHARED_LIBRARY_H
 
-void hello(void);
+__declspec(dllexport) int add(int a,int b);
 
 #endif //FRIDA_SHARED_LIBRARY_H
