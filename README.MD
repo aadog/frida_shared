@@ -1,4 +1,6 @@
+
 ##window build frida.dll (msvc MT)
+
 1.install llvm C:\\Program Files\\LLVM\\
 
 2.install frida-core library
