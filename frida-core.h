@@ -173,7 +173,7 @@
 
 /* Here we provide G_GNUC_EXTENSION as an alias for __extension__,
  * where this is valid. This allows for warningless compilation of
- * "long long" types even in the presence of '-ansi -pedantic'.
+ * "long long" types even in the presence of '-ansi -pedantic'. 
  */
 #if G_GNUC_CHECK_VERSION(2, 8)
 #define G_GNUC_EXTENSION __extension__
@@ -1207,12 +1207,12 @@
 #endif
 
 /*
- * The G_LIKELY and G_UNLIKELY macros let the programmer give hints to
+ * The G_LIKELY and G_UNLIKELY macros let the programmer give hints to 
  * the compiler about the expected result of an expression. Some compilers
  * can use this information for optimizations.
  *
  * The _G_BOOLEAN_EXPR macro is intended to trigger a gcc warning when
- * putting assignments in g_return_if_fail ().
+ * putting assignments in g_return_if_fail ().  
  */
 #if G_GNUC_CHECK_VERSION(2, 0) && defined(__OPTIMIZE__)
 #define _G_BOOLEAN_EXPR(expr)                   \
@@ -2860,10 +2860,10 @@ typedef void            (*GFreeFunc)            (gpointer       data);
  * @str: the untranslated string
  * @data: user data specified when installing the function, e.g.
  *  in g_option_group_set_translate_func()
- *
+ * 
  * The type of functions which are used to translate user-visible
  * strings, for <option>--help</option> output.
- *
+ * 
  * Returns: a translation of the string for the current locale.
  *  The returned string is owned by GLib and must not be freed.
  */
@@ -2896,7 +2896,7 @@ typedef const gchar *   (*GTranslateFunc)       (const gchar   *str,
  */
 #define G_LITTLE_ENDIAN 1234
 #define G_BIG_ENDIAN    4321
-#define G_PDP_ENDIAN    3412		/* unused, need specific PDP check */
+#define G_PDP_ENDIAN    3412		/* unused, need specific PDP check */	
 
 
 /* Basic bit swapping functions
@@ -3300,7 +3300,7 @@ G_END_DECLS
 # undef alloca
 # define alloca(size)   __builtin_alloca (size)
 #elif defined (GLIB_HAVE_ALLOCA_H)
-/* a native and working alloca.h is there */
+/* a native and working alloca.h is there */ 
 # include <alloca.h>
 #else /* !__GNUC__ && !GLIB_HAVE_ALLOCA_H */
 # if defined(_MSC_VER) || defined(__DMC__)
@@ -3322,7 +3322,7 @@ G_END_DECLS
 /**
  * g_alloca:
  * @size: number of bytes to allocate.
- *
+ * 
  * Allocates @size bytes on the stack; these bytes will be freed when the current
  * stack frame is cleaned up. This macro essentially just wraps the alloca()
  * function present on most UNIX variants.
@@ -3352,7 +3352,7 @@ G_END_DECLS
  *   Stack space allocated with alloca() in the same scope as a variable sized array
  *   will be freed together with the variable sized array upon exit of that scope, and
  *   not upon exit of the enclosing function scope.
- *
+ * 
  * Returns: space for @size bytes, allocated on the stack
  */
 #define g_alloca(size)		 alloca (size)
@@ -3360,9 +3360,9 @@ G_END_DECLS
  * g_newa:
  * @struct_type: Type of memory chunks to be allocated
  * @n_structs: Number of chunks to be allocated
- *
+ * 
  * Wraps g_alloca() in a more typesafe manner.
- *
+ * 
  * As mentioned in the documentation for g_alloca(), @n_structs must always be
  * entirely under the control of the program, or you may introduce a denial of
  * service vulnerability. In addition, the multiplication of @struct_type by
@@ -3507,8 +3507,8 @@ void    g_array_set_clear_func    (GArray           *array,
                                    GDestroyNotify    clear_func);
 
 /* Resizable pointer array.  This interface is much less complicated
- * than the above.  Add appends a pointer.  Remove fills any cleared
- * spot and shortens the array. remove_fast will again distort order.
+ * than the above.  Add appends a pointer.  Remove fills any cleared 
+ * spot and shortens the array. remove_fast will again distort order.  
  */
 #define    g_ptr_array_index(array,index_) ((array)->pdata)[index_]
 GLIB_AVAILABLE_IN_ALL
@@ -3751,7 +3751,7 @@ G_END_DECLS
 G_BEGIN_DECLS
 
 GLIB_AVAILABLE_IN_ALL
-gint g_atomic_int_get(const volatile gint *atomic);
+gint                    g_atomic_int_get                      (const volatile gint *atomic);
 GLIB_AVAILABLE_IN_ALL
 void                    g_atomic_int_set                      (volatile gint  *atomic,
                                                                gint            newval);
@@ -6507,7 +6507,7 @@ void           g_bookmark_file_set_visited_date_time (GBookmarkFile  *bookmark,
                                                       GDateTime      *visited);
 GLIB_DEPRECATED_IN_2_66_FOR(g_bookmark_file_get_visited_date_time)
 time_t         g_bookmark_file_get_visited         (GBookmarkFile  *bookmark,
-						    const gchar    *uri,
+						    const gchar    *uri, 
 						    GError        **error);
 GLIB_AVAILABLE_IN_2_66
 GDateTime     *g_bookmark_file_get_visited_date_time (GBookmarkFile  *bookmark,
@@ -6877,27 +6877,27 @@ gint   g_iconv_close  (GIConv        converter);
 
 GLIB_AVAILABLE_IN_ALL
 gchar* g_convert               (const gchar  *str,
-				gssize        len,
+				gssize        len,            
 				const gchar  *to_codeset,
 				const gchar  *from_codeset,
-				gsize        *bytes_read,
-				gsize        *bytes_written,
+				gsize        *bytes_read,     
+				gsize        *bytes_written,  
 				GError      **error) G_GNUC_MALLOC;
 GLIB_AVAILABLE_IN_ALL
 gchar* g_convert_with_iconv    (const gchar  *str,
 				gssize        len,
 				GIConv        converter,
-				gsize        *bytes_read,
-				gsize        *bytes_written,
+				gsize        *bytes_read,     
+				gsize        *bytes_written,  
 				GError      **error) G_GNUC_MALLOC;
 GLIB_AVAILABLE_IN_ALL
 gchar* g_convert_with_fallback (const gchar  *str,
-				gssize        len,
+				gssize        len,            
 				const gchar  *to_codeset,
 				const gchar  *from_codeset,
 				const gchar  *fallback,
-				gsize        *bytes_read,
-				gsize        *bytes_written,
+				gsize        *bytes_read,     
+				gsize        *bytes_written,  
 				GError      **error) G_GNUC_MALLOC;
 
 
@@ -6905,15 +6905,15 @@ gchar* g_convert_with_fallback (const gchar  *str,
  */
 GLIB_AVAILABLE_IN_ALL
 gchar* g_locale_to_utf8   (const gchar  *opsysstring,
-			   gssize        len,
-			   gsize        *bytes_read,
-			   gsize        *bytes_written,
+			   gssize        len,            
+			   gsize        *bytes_read,     
+			   gsize        *bytes_written,  
 			   GError      **error) G_GNUC_MALLOC;
 GLIB_AVAILABLE_IN_ALL
 gchar* g_locale_from_utf8 (const gchar  *utf8string,
-			   gssize        len,
-			   gsize        *bytes_read,
-			   gsize        *bytes_written,
+			   gssize        len,            
+			   gsize        *bytes_read,     
+			   gsize        *bytes_written,  
 			   GError      **error) G_GNUC_MALLOC;
 
 /* Convert between the operating system (or C runtime)
@@ -6921,22 +6921,22 @@ gchar* g_locale_from_utf8 (const gchar  *utf8string,
  */
 GLIB_AVAILABLE_IN_ALL
 gchar* g_filename_to_utf8   (const gchar  *opsysstring,
-			     gssize        len,
-			     gsize        *bytes_read,
-			     gsize        *bytes_written,
+			     gssize        len,            
+			     gsize        *bytes_read,     
+			     gsize        *bytes_written,  
 			     GError      **error) G_GNUC_MALLOC;
 GLIB_AVAILABLE_IN_ALL
 gchar* g_filename_from_utf8 (const gchar  *utf8string,
-			     gssize        len,
-			     gsize        *bytes_read,
-			     gsize        *bytes_written,
+			     gssize        len,            
+			     gsize        *bytes_read,     
+			     gsize        *bytes_written,  
 			     GError      **error) G_GNUC_MALLOC;
 
 GLIB_AVAILABLE_IN_ALL
 gchar *g_filename_from_uri (const gchar *uri,
 			    gchar      **hostname,
 			    GError     **error) G_GNUC_MALLOC;
-
+  
 GLIB_AVAILABLE_IN_ALL
 gchar *g_filename_to_uri   (const gchar *filename,
 			    const gchar *hostname,
@@ -7912,7 +7912,7 @@ G_BEGIN_DECLS
  * @calloc: function to use for allocating zero-filled memory.
  * @try_malloc: function to use for allocating memory without a default error handler.
  * @try_realloc: function to use for reallocating memory without a default error handler.
- *
+ * 
  * A set of functions used to perform memory allocation. The same #GMemVTable must
  * be used for all allocations in the same program; a call to g_mem_set_vtable(),
  * if it exists, should be prior to any use of GLib.
@@ -8139,16 +8139,16 @@ g_steal_pointer (gpointer pp)
  * g_new:
  * @struct_type: the type of the elements to allocate
  * @n_structs: the number of elements to allocate
- *
+ * 
  * Allocates @n_structs elements of type @struct_type.
  * The returned pointer is cast to a pointer to the given type.
  * If @n_structs is 0 it returns %NULL.
  * Care is taken to avoid overflow when calculating the size of the allocated block.
- *
+ * 
  * Since the returned pointer is already casted to the right type,
  * it is normally unnecessary to cast it explicitly, and doing
  * so might hide memory allocation errors.
- *
+ * 
  * Returns: a pointer to the allocated memory, cast to a pointer to @struct_type
  */
 #define g_new(struct_type, n_structs)			_G_NEW (struct_type, n_structs, malloc)
@@ -8156,16 +8156,16 @@ g_steal_pointer (gpointer pp)
  * g_new0:
  * @struct_type: the type of the elements to allocate.
  * @n_structs: the number of elements to allocate.
- *
+ * 
  * Allocates @n_structs elements of type @struct_type, initialized to 0's.
  * The returned pointer is cast to a pointer to the given type.
  * If @n_structs is 0 it returns %NULL.
  * Care is taken to avoid overflow when calculating the size of the allocated block.
- *
+ * 
  * Since the returned pointer is already casted to the right type,
  * it is normally unnecessary to cast it explicitly, and doing
  * so might hide memory allocation errors.
- *
+ * 
  * Returns: a pointer to the allocated memory, cast to a pointer to @struct_type.
  */
 #define g_new0(struct_type, n_structs)			_G_NEW (struct_type, n_structs, malloc0)
@@ -8174,12 +8174,12 @@ g_steal_pointer (gpointer pp)
  * @struct_type: the type of the elements to allocate
  * @mem: the currently allocated memory
  * @n_structs: the number of elements to allocate
- *
+ * 
  * Reallocates the memory pointed to by @mem, so that it now has space for
  * @n_structs elements of type @struct_type. It returns the new address of
  * the memory, which may have been moved.
  * Care is taken to avoid overflow when calculating the size of the allocated block.
- *
+ * 
  * Returns: a pointer to the new allocated memory, cast to a pointer to @struct_type
  */
 #define g_renew(struct_type, mem, n_structs)		_G_RENEW (struct_type, mem, n_structs, realloc)
@@ -8187,12 +8187,12 @@ g_steal_pointer (gpointer pp)
  * g_try_new:
  * @struct_type: the type of the elements to allocate
  * @n_structs: the number of elements to allocate
- *
+ * 
  * Attempts to allocate @n_structs elements of type @struct_type, and returns
  * %NULL on failure. Contrast with g_new(), which aborts the program on failure.
  * The returned pointer is cast to a pointer to the given type.
  * The function returns %NULL when @n_structs is 0 of if an overflow occurs.
- *
+ * 
  * Since: 2.8
  * Returns: a pointer to the allocated memory, cast to a pointer to @struct_type
  */
@@ -8201,13 +8201,13 @@ g_steal_pointer (gpointer pp)
  * g_try_new0:
  * @struct_type: the type of the elements to allocate
  * @n_structs: the number of elements to allocate
- *
+ * 
  * Attempts to allocate @n_structs elements of type @struct_type, initialized
  * to 0's, and returns %NULL on failure. Contrast with g_new0(), which aborts
  * the program on failure.
  * The returned pointer is cast to a pointer to the given type.
  * The function returns %NULL when @n_structs is 0 or if an overflow occurs.
- *
+ * 
  * Since: 2.8
  * Returns: a pointer to the allocated memory, cast to a pointer to @struct_type
  */
@@ -8217,13 +8217,13 @@ g_steal_pointer (gpointer pp)
  * @struct_type: the type of the elements to allocate
  * @mem: the currently allocated memory
  * @n_structs: the number of elements to allocate
- *
+ * 
  * Attempts to reallocate the memory pointed to by @mem, so that it now has
  * space for @n_structs elements of type @struct_type, and returns %NULL on
  * failure. Contrast with g_renew(), which aborts the program on failure.
  * It returns the new address of the memory, which may have been moved.
  * The function returns %NULL if an overflow occurs.
- *
+ * 
  * Since: 2.8
  * Returns: a pointer to the new allocated memory, cast to a pointer to @struct_type
  */
@@ -8344,7 +8344,7 @@ struct _GNode
  *
  * Returns %TRUE if a #GNode is the root of a tree.
  *
- * Returns: %TRUE if the #GNode is the root of a tree
+ * Returns: %TRUE if the #GNode is the root of a tree 
  *     (i.e. it has no parent or siblings)
  */
 #define	 G_NODE_IS_ROOT(node)	(((GNode*) (node))->parent == NULL && \
@@ -8357,7 +8357,7 @@ struct _GNode
  *
  * Returns %TRUE if a #GNode is a leaf node.
  *
- * Returns: %TRUE if the #GNode is a leaf node
+ * Returns: %TRUE if the #GNode is a leaf node 
  *     (i.e. it has no children)
  */
 #define	 G_NODE_IS_LEAF(node)	(((GNode*) (node))->children == NULL)
@@ -8385,7 +8385,7 @@ GNode*	 g_node_insert_before	(GNode		  *parent,
 GLIB_AVAILABLE_IN_ALL
 GNode*   g_node_insert_after    (GNode            *parent,
 				 GNode            *sibling,
-				 GNode            *node);
+				 GNode            *node); 
 GLIB_AVAILABLE_IN_ALL
 GNode*	 g_node_prepend		(GNode		  *parent,
 				 GNode		  *node);
@@ -8421,7 +8421,7 @@ GNode*	 g_node_find		(GNode		  *root,
 /**
  * g_node_insert_data:
  * @parent: the #GNode to place the new #GNode under
- * @position: the position to place the new #GNode at. If position is -1,
+ * @position: the position to place the new #GNode at. If position is -1, 
  *     the new #GNode is inserted as the last child of @parent
  * @data: the data for the new #GNode
  *
@@ -8563,7 +8563,7 @@ GNode*	 g_node_last_sibling	 (GNode		  *node);
  *
  * Gets the first child of a #GNode.
  *
- * Returns: the first child of @node, or %NULL if @node is %NULL
+ * Returns: the first child of @node, or %NULL if @node is %NULL 
  *     or has no children
  */
 #define	 g_node_first_child(node)	((node) ? \
@@ -9739,7 +9739,7 @@ struct _GSource
   guint source_id;
 
   GSList *poll_fds;
-
+  
   GSource *prev;
   GSource *next;
 
@@ -9753,7 +9753,7 @@ struct _GSourceCallbackFuncs
   void (*ref)   (gpointer     cb_data);
   void (*unref) (gpointer     cb_data);
   void (*get)   (gpointer     cb_data,
-                 GSource     *source,
+                 GSource     *source, 
                  GSourceFunc *func,
                  gpointer    *data);
 };
@@ -9778,7 +9778,7 @@ struct _GSourceFuncs
 
   /*< private >*/
   /* For use by g_source_set_closure */
-  GSourceFunc     closure_callback;
+  GSourceFunc     closure_callback;        
   GSourceDummyMarshal closure_marshal; /* Really is of type GClosureMarshal */
 };
 
@@ -10542,7 +10542,7 @@ typedef enum
  *
  * These are the possible line break classifications.
  *
- * Since new unicode versions may add new types here, applications should be ready
+ * Since new unicode versions may add new types here, applications should be ready 
  * to handle unknown values. They may be regarded as %G_UNICODE_BREAK_UNKNOWN.
  *
  * See [Unicode Line Breaking Algorithm](http://www.unicode.org/unicode/reports/tr14/).
@@ -11521,8 +11521,8 @@ struct _GIOChannel
   guint is_writeable   : 1;	/* ditto */
   guint is_seekable    : 1;	/* ditto */
 
-  gpointer reserved1;
-  gpointer reserved2;
+  gpointer reserved1;	
+  gpointer reserved2;	
 };
 
 typedef gboolean (*GIOFunc) (GIOChannel   *source,
@@ -11530,18 +11530,18 @@ typedef gboolean (*GIOFunc) (GIOChannel   *source,
 			     gpointer      data);
 struct _GIOFuncs
 {
-  GIOStatus (*io_read)           (GIOChannel   *channel,
-			          gchar        *buf,
+  GIOStatus (*io_read)           (GIOChannel   *channel, 
+			          gchar        *buf, 
 				  gsize         count,
 				  gsize        *bytes_read,
 				  GError      **err);
-  GIOStatus (*io_write)          (GIOChannel   *channel,
-				  const gchar  *buf,
+  GIOStatus (*io_write)          (GIOChannel   *channel, 
+				  const gchar  *buf, 
 				  gsize         count,
 				  gsize        *bytes_written,
 				  GError      **err);
-  GIOStatus (*io_seek)           (GIOChannel   *channel,
-				  gint64        offset,
+  GIOStatus (*io_seek)           (GIOChannel   *channel, 
+				  gint64        offset, 
 				  GSeekType     type,
 				  GError      **err);
   GIOStatus  (*io_close)         (GIOChannel   *channel,
@@ -14052,9 +14052,9 @@ G_BEGIN_DECLS
 
 /**
  * GOptionContext:
- *
+ * 
  * A `GOptionContext` struct defines which options
- * are accepted by the commandline option parser. The struct has only private
+ * are accepted by the commandline option parser. The struct has only private 
  * fields and should not be directly accessed.
  */
 typedef struct _GOptionContext GOptionContext;
@@ -14087,12 +14087,12 @@ typedef struct _GOptionEntry   GOptionEntry;
  * @G_OPTION_FLAG_FILENAME: For options of the %G_OPTION_ARG_CALLBACK
  *     kind, this flag indicates that the argument should be passed to the
  *     callback in the GLib filename encoding rather than UTF-8. Since 2.8
- * @G_OPTION_FLAG_OPTIONAL_ARG: For options of the %G_OPTION_ARG_CALLBACK
+ * @G_OPTION_FLAG_OPTIONAL_ARG: For options of the %G_OPTION_ARG_CALLBACK 
  *     kind, this flag indicates that the argument supply is optional.
  *     If no argument is given then data of %GOptionParseFunc will be
  *     set to NULL. Since 2.8
  * @G_OPTION_FLAG_NOALIAS: This flag turns off the automatic conflict
- *     resolution which prefixes long option names with `groupname-` if
+ *     resolution which prefixes long option names with `groupname-` if 
  *     there is a conflict. This option should only be used in situations
  *     where aliasing is necessary to model some legacy commandline interface.
  *     It is not safe to use this option, unless all option groups are under
@@ -14123,7 +14123,7 @@ typedef enum
        be in the GLib filename encoding rather than UTF-8.
  * @G_OPTION_ARG_STRING_ARRAY: The option takes a string argument, multiple
  *     uses of the option are collected into an array of strings.
- * @G_OPTION_ARG_FILENAME_ARRAY: The option takes a filename as argument,
+ * @G_OPTION_ARG_FILENAME_ARRAY: The option takes a filename as argument, 
  *     multiple uses of the option are collected into an array of strings.
  * @G_OPTION_ARG_DOUBLE: The option takes a double argument. The argument
  *     can be formatted either for the user's locale or for the "C" locale.
@@ -14132,7 +14132,7 @@ typedef enum
  *     %G_OPTION_ARG_INT but for larger numbers. The number can be in
  *     decimal base, or in hexadecimal (when prefixed with `0x`, for
  *     example, `0xffffffff`). Since 2.12
- *
+ * 
  * The #GOptionArg enum values determine which type of extra argument the
  * options expect to find. If an option expects an extra argument, it can
  * be specified in several ways; with a short option: `-x arg`, with a long
@@ -14153,7 +14153,7 @@ typedef enum
 
 /**
  * GOptionArgFunc:
- * @option_name: The name of the option being parsed. This will be either a
+ * @option_name: The name of the option being parsed. This will be either a 
  *  single dash followed by a single letter (for a short name) or two dashes
  *  followed by a long option name.
  * @value: The value to be parsed.
@@ -14161,11 +14161,11 @@ typedef enum
  *  was created with g_option_group_new()
  * @error: A return location for errors. The error code %G_OPTION_ERROR_FAILED
  *  is intended to be used for errors in #GOptionArgFunc callbacks.
- *
+ * 
  * The type of function to be passed as callback for %G_OPTION_ARG_CALLBACK
  * options.
- *
- * Returns: %TRUE if the option was successfully parsed, %FALSE if an error
+ * 
+ * Returns: %TRUE if the option was successfully parsed, %FALSE if an error 
  *  occurred, in which case @error should be set with g_set_error()
  */
 typedef gboolean (*GOptionArgFunc) (const gchar    *option_name,
@@ -14180,10 +14180,10 @@ typedef gboolean (*GOptionArgFunc) (const gchar    *option_name,
  * @data: User data added to the #GOptionGroup containing the option when it
  *  was created with g_option_group_new()
  * @error: A return location for error details
- *
- * The type of function that can be called before and after parsing.
- *
- * Returns: %TRUE if the function completed successfully, %FALSE if an error
+ * 
+ * The type of function that can be called before and after parsing. 
+ * 
+ * Returns: %TRUE if the function completed successfully, %FALSE if an error 
  *  occurred, in which case @error should be set with g_set_error()
  */
 typedef gboolean (*GOptionParseFunc) (GOptionContext *context,
@@ -14198,7 +14198,7 @@ typedef gboolean (*GOptionParseFunc) (GOptionContext *context,
  * @data: User data added to the #GOptionGroup containing the option when it
  *  was created with g_option_group_new()
  * @error: The #GError containing details about the parse error
- *
+ * 
  * The type of function to be used as callback when a parse error occurs.
  */
 typedef void (*GOptionErrorFunc) (GOptionContext *context,
@@ -14208,9 +14208,9 @@ typedef void (*GOptionErrorFunc) (GOptionContext *context,
 
 /**
  * G_OPTION_ERROR:
- *
+ * 
  * Error domain for option parsing. Errors in this domain will
- * be from the #GOptionError enumeration. See #GError for information on
+ * be from the #GOptionError enumeration. See #GError for information on 
  * error domains.
  */
 #define G_OPTION_ERROR (g_option_error_quark ())
@@ -14222,7 +14222,7 @@ typedef void (*GOptionErrorFunc) (GOptionContext *context,
  *  to ignore unknown options, see g_option_context_set_ignore_unknown_options().
  * @G_OPTION_ERROR_BAD_VALUE: A value couldn't be parsed.
  * @G_OPTION_ERROR_FAILED: A #GOptionArgFunc callback failed.
- *
+ * 
  * Error codes returned by option parsing.
  */
 typedef enum
@@ -14240,7 +14240,7 @@ GQuark g_option_error_quark (void);
  * @long_name: The long name of an option can be used to specify it
  *     in a commandline as `--long_name`. Every option must have a
  *     long name. To resolve conflicts if multiple option groups contain
- *     the same long name, it is also possible to specify the option as
+ *     the same long name, it is also possible to specify the option as 
  *     `--groupname-long_name`.
  * @short_name: If an option has a short name, it can be specified
  *     `-short_name` in a commandline. @short_name must be  a printable
@@ -14272,7 +14272,7 @@ GQuark g_option_error_quark (void);
  *     by the option in `--help` output. The @arg_description is translated
  *     using the @translate_func of the group, see
  *     g_option_group_set_translation_domain().
- *
+ * 
  * A GOptionEntry struct defines a single option. To have an effect, they
  * must be added to a #GOptionGroup with g_option_context_add_main_entries()
  * or g_option_group_add_entries().
@@ -14285,25 +14285,25 @@ struct _GOptionEntry
 
   GOptionArg   arg;
   gpointer     arg_data;
-
+  
   const gchar *description;
   const gchar *arg_description;
 };
 
 /**
  * G_OPTION_REMAINING:
- *
- * If a long option in the main group has this name, it is not treated as a
+ * 
+ * If a long option in the main group has this name, it is not treated as a 
  * regular option. Instead it collects all non-option arguments which would
  * otherwise be left in `argv`. The option must be of type
  * %G_OPTION_ARG_CALLBACK, %G_OPTION_ARG_STRING_ARRAY
  * or %G_OPTION_ARG_FILENAME_ARRAY.
- *
- *
+ * 
+ * 
  * Using #G_OPTION_REMAINING instead of simply scanning `argv`
- * for leftover arguments has the advantage that GOption takes care of
+ * for leftover arguments has the advantage that GOption takes care of 
  * necessary encoding conversions for strings or filenames.
- *
+ * 
  * Since: 2.6
  */
 #define G_OPTION_REMAINING ""
@@ -15303,24 +15303,24 @@ G_BEGIN_DECLS
  * @G_REGEX_ERROR_INVALID_RELATIVE_REFERENCE: relative reference must not be zero. Since: 2.34
  * @G_REGEX_ERROR_BACKTRACKING_CONTROL_VERB_ARGUMENT_FORBIDDEN: the backtracing
  *     control verb used does not allow an argument. Since: 2.34
- * @G_REGEX_ERROR_UNKNOWN_BACKTRACKING_CONTROL_VERB: unknown backtracing
+ * @G_REGEX_ERROR_UNKNOWN_BACKTRACKING_CONTROL_VERB: unknown backtracing 
  *     control verb. Since: 2.34
  * @G_REGEX_ERROR_NUMBER_TOO_BIG: number is too big in escape sequence. Since: 2.34
  * @G_REGEX_ERROR_MISSING_SUBPATTERN_NAME: Missing subpattern name. Since: 2.34
  * @G_REGEX_ERROR_MISSING_DIGIT: Missing digit. Since 2.34
  * @G_REGEX_ERROR_INVALID_DATA_CHARACTER: In JavaScript compatibility mode,
  *     "[" is an invalid data character. Since: 2.34
- * @G_REGEX_ERROR_EXTRA_SUBPATTERN_NAME: different names for subpatterns of the
+ * @G_REGEX_ERROR_EXTRA_SUBPATTERN_NAME: different names for subpatterns of the 
  *     same number are not allowed. Since: 2.34
  * @G_REGEX_ERROR_BACKTRACKING_CONTROL_VERB_ARGUMENT_REQUIRED: the backtracing control
  *     verb requires an argument. Since: 2.34
- * @G_REGEX_ERROR_INVALID_CONTROL_CHAR: "\\c" must be followed by an ASCII
+ * @G_REGEX_ERROR_INVALID_CONTROL_CHAR: "\\c" must be followed by an ASCII 
  *     character. Since: 2.34
- * @G_REGEX_ERROR_MISSING_NAME: "\\k" is not followed by a braced, angle-bracketed, or
+ * @G_REGEX_ERROR_MISSING_NAME: "\\k" is not followed by a braced, angle-bracketed, or 
  *     quoted name. Since: 2.34
  * @G_REGEX_ERROR_NOT_SUPPORTED_IN_CLASS: "\\N" is not supported in a class. Since: 2.34
  * @G_REGEX_ERROR_TOO_MANY_FORWARD_REFERENCES: too many forward references. Since: 2.34
- * @G_REGEX_ERROR_NAME_TOO_LONG: the name is too long in "(*MARK)", "(*PRUNE)",
+ * @G_REGEX_ERROR_NAME_TOO_LONG: the name is too long in "(*MARK)", "(*PRUNE)", 
  *     "(*SKIP)", or "(*THEN)". Since: 2.34
  * @G_REGEX_ERROR_CHARACTER_VALUE_TOO_LARGE: the character value in the \\u sequence is
  *     too large. Since: 2.34
@@ -15655,7 +15655,7 @@ gboolean          g_regex_get_has_cr_or_lf      (const GRegex        *regex);
 GLIB_AVAILABLE_IN_2_38
 gint              g_regex_get_max_lookbehind    (const GRegex        *regex);
 GLIB_AVAILABLE_IN_ALL
-gint		  g_regex_get_string_number	(const GRegex        *regex,
+gint		  g_regex_get_string_number	(const GRegex        *regex, 
 						 const gchar         *name);
 GLIB_AVAILABLE_IN_ALL
 gchar		 *g_regex_escape_string		(const gchar         *string,
@@ -15874,7 +15874,7 @@ typedef enum
 typedef enum
 {
   G_TOKEN_EOF			=   0,
-
+  
   G_TOKEN_LEFT_PAREN		= '(',
   G_TOKEN_RIGHT_PAREN		= ')',
   G_TOKEN_LEFT_CURLY		= '{',
@@ -15883,11 +15883,11 @@ typedef enum
   G_TOKEN_RIGHT_BRACE		= ']',
   G_TOKEN_EQUAL_SIGN		= '=',
   G_TOKEN_COMMA			= ',',
-
+  
   G_TOKEN_NONE			= 256,
-
+  
   G_TOKEN_ERROR,
-
+  
   G_TOKEN_CHAR,
   G_TOKEN_BINARY,
   G_TOKEN_OCTAL,
@@ -15895,11 +15895,11 @@ typedef enum
   G_TOKEN_HEX,
   G_TOKEN_FLOAT,
   G_TOKEN_STRING,
-
+  
   G_TOKEN_SYMBOL,
   G_TOKEN_IDENTIFIER,
   G_TOKEN_IDENTIFIER_NULL,
-
+  
   G_TOKEN_COMMENT_SINGLE,
   G_TOKEN_COMMENT_MULTI,
 
@@ -15931,11 +15931,11 @@ struct	_GScannerConfig
   gchar		*cset_identifier_first;
   gchar		*cset_identifier_nth;
   gchar		*cpair_comment_single;		/* default: "#\n" */
-
+  
   /* Should symbol lookup work case sensitive?
    */
   guint		case_sensitive : 1;
-
+  
   /* Boolean values to be adjusted "on the fly"
    * to configure scanning behaviour.
    */
@@ -15970,25 +15970,25 @@ struct	_GScanner
   /* unused fields */
   gpointer		user_data;
   guint			max_parse_errors;
-
+  
   /* g_scanner_error() increments this field */
   guint			parse_errors;
-
+  
   /* name of input stream, featured by the default message handler */
   const gchar		*input_name;
-
+  
   /* quarked data */
   GData			*qdata;
-
+  
   /* link into the scanner configuration */
   GScannerConfig	*config;
-
+  
   /* fields filled in after g_scanner_get_next_token() */
   GTokenType		token;
   GTokenValue		value;
   guint			line;
   guint			position;
-
+  
   /* fields filled in after g_scanner_peek_next_token() */
   GTokenType		next_token;
   GTokenValue		next_value;
@@ -16943,9 +16943,9 @@ gchar*	              g_strdup_vprintf (const gchar *format,
 					va_list      args) G_GNUC_PRINTF(1, 0) G_GNUC_MALLOC;
 GLIB_AVAILABLE_IN_ALL
 gchar*	              g_strndup	       (const gchar *str,
-					gsize        n) G_GNUC_MALLOC;
+					gsize        n) G_GNUC_MALLOC;  
 GLIB_AVAILABLE_IN_ALL
-gchar*	              g_strnfill       (gsize        length,
+gchar*	              g_strnfill       (gsize        length,  
 					gchar        fill_char) G_GNUC_MALLOC;
 GLIB_AVAILABLE_IN_ALL
 gchar*	              g_strconcat      (const gchar *string1,
@@ -17312,7 +17312,7 @@ typedef void (*GTestFixtureFunc) (gpointer      fixture,
         g_free (__s2); \
         g_free (__msg); \
       } \
-      }\
+  } \
   G_STMT_END
 #define g_assert_cmpstrv(strv1, strv2) \
   G_STMT_START \
@@ -18049,7 +18049,7 @@ void     g_usleep                (gulong       microseconds);
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 GLIB_DEPRECATED_IN_2_62
-void     g_time_val_add          (GTimeVal    *time_,
+void     g_time_val_add          (GTimeVal    *time_, 
                                   glong        microseconds);
 GLIB_DEPRECATED_IN_2_62_FOR(g_date_time_new_from_iso8601)
 gboolean g_time_val_from_iso8601 (const gchar *iso_date,
@@ -19161,7 +19161,7 @@ struct _GCompletion
 {
   GList* items;
   GCompletionFunc func;
-
+ 
   gchar* prefix;
   GList* cache;
   GCompletionStrncmpFunc strncmp_func;
@@ -19956,15 +19956,15 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_FUNDAMENTAL:
  * @type: A #GType value.
- *
+ * 
  * The fundamental type which is the ancestor of @type.
- * Fundamental types are types that serve as ultimate bases for the derived types,
+ * Fundamental types are types that serve as ultimate bases for the derived types, 
  * thus they are the roots of distinct inheritance hierarchies.
  */
 #define G_TYPE_FUNDAMENTAL(type)	(g_type_fundamental (type))
 /**
  * G_TYPE_FUNDAMENTAL_MAX:
- *
+ * 
  * An integer constant that represents the number of identifiers reserved
  * for types that are assigned at compile-time.
  */
@@ -19974,27 +19974,27 @@ G_BEGIN_DECLS
  */
 /**
  * G_TYPE_INVALID:
- *
+ * 
  * An invalid #GType used as error return value in some functions which return
- * a #GType.
+ * a #GType. 
  */
 #define G_TYPE_INVALID			G_TYPE_MAKE_FUNDAMENTAL (0)
 /**
  * G_TYPE_NONE:
- *
+ * 
  * A fundamental type which is used as a replacement for the C
  * void return type.
  */
 #define G_TYPE_NONE			G_TYPE_MAKE_FUNDAMENTAL (1)
 /**
  * G_TYPE_INTERFACE:
- *
+ * 
  * The fundamental type from which all interfaces are derived.
  */
 #define G_TYPE_INTERFACE		G_TYPE_MAKE_FUNDAMENTAL (2)
 /**
  * G_TYPE_CHAR:
- *
+ * 
  * The fundamental type corresponding to #gchar.
  * The type designated by G_TYPE_CHAR is unconditionally an 8-bit signed integer.
  * This may or may not be the same type a the C type "gchar".
@@ -20002,103 +20002,103 @@ G_BEGIN_DECLS
 #define G_TYPE_CHAR			G_TYPE_MAKE_FUNDAMENTAL (3)
 /**
  * G_TYPE_UCHAR:
- *
+ * 
  * The fundamental type corresponding to #guchar.
  */
 #define G_TYPE_UCHAR			G_TYPE_MAKE_FUNDAMENTAL (4)
 /**
  * G_TYPE_BOOLEAN:
- *
+ * 
  * The fundamental type corresponding to #gboolean.
  */
 #define G_TYPE_BOOLEAN			G_TYPE_MAKE_FUNDAMENTAL (5)
 /**
  * G_TYPE_INT:
- *
+ * 
  * The fundamental type corresponding to #gint.
  */
 #define G_TYPE_INT			G_TYPE_MAKE_FUNDAMENTAL (6)
 /**
  * G_TYPE_UINT:
- *
+ * 
  * The fundamental type corresponding to #guint.
  */
 #define G_TYPE_UINT			G_TYPE_MAKE_FUNDAMENTAL (7)
 /**
  * G_TYPE_LONG:
- *
+ * 
  * The fundamental type corresponding to #glong.
  */
 #define G_TYPE_LONG			G_TYPE_MAKE_FUNDAMENTAL (8)
 /**
  * G_TYPE_ULONG:
- *
+ * 
  * The fundamental type corresponding to #gulong.
  */
 #define G_TYPE_ULONG			G_TYPE_MAKE_FUNDAMENTAL (9)
 /**
  * G_TYPE_INT64:
- *
+ * 
  * The fundamental type corresponding to #gint64.
  */
 #define G_TYPE_INT64			G_TYPE_MAKE_FUNDAMENTAL (10)
 /**
  * G_TYPE_UINT64:
- *
+ * 
  * The fundamental type corresponding to #guint64.
  */
 #define G_TYPE_UINT64			G_TYPE_MAKE_FUNDAMENTAL (11)
 /**
  * G_TYPE_ENUM:
- *
+ * 
  * The fundamental type from which all enumeration types are derived.
  */
 #define G_TYPE_ENUM			G_TYPE_MAKE_FUNDAMENTAL (12)
 /**
  * G_TYPE_FLAGS:
- *
+ * 
  * The fundamental type from which all flags types are derived.
  */
 #define G_TYPE_FLAGS			G_TYPE_MAKE_FUNDAMENTAL (13)
 /**
  * G_TYPE_FLOAT:
- *
+ * 
  * The fundamental type corresponding to #gfloat.
  */
 #define G_TYPE_FLOAT			G_TYPE_MAKE_FUNDAMENTAL (14)
 /**
  * G_TYPE_DOUBLE:
- *
+ * 
  * The fundamental type corresponding to #gdouble.
  */
 #define G_TYPE_DOUBLE			G_TYPE_MAKE_FUNDAMENTAL (15)
 /**
  * G_TYPE_STRING:
- *
+ * 
  * The fundamental type corresponding to nul-terminated C strings.
  */
 #define G_TYPE_STRING			G_TYPE_MAKE_FUNDAMENTAL (16)
 /**
  * G_TYPE_POINTER:
- *
+ * 
  * The fundamental type corresponding to #gpointer.
  */
 #define G_TYPE_POINTER			G_TYPE_MAKE_FUNDAMENTAL (17)
 /**
  * G_TYPE_BOXED:
- *
+ * 
  * The fundamental type from which all boxed types are derived.
  */
 #define G_TYPE_BOXED			G_TYPE_MAKE_FUNDAMENTAL (18)
 /**
  * G_TYPE_PARAM:
- *
+ * 
  * The fundamental type from which all #GParamSpec types are derived.
  */
 #define G_TYPE_PARAM			G_TYPE_MAKE_FUNDAMENTAL (19)
 /**
  * G_TYPE_OBJECT:
- *
+ * 
  * The fundamental type for #GObject.
  */
 #define G_TYPE_OBJECT			G_TYPE_MAKE_FUNDAMENTAL (20)
@@ -20109,7 +20109,7 @@ G_BEGIN_DECLS
  *
  * All floating #GVariant instances passed through the #GType system are
  * consumed.
- *
+ * 
  * Note that callbacks in closures, and signal handlers
  * for signals of return type %G_TYPE_VARIANT, must never return floating
  * variants.
@@ -20137,9 +20137,9 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_MAKE_FUNDAMENTAL:
  * @x: the fundamental type number.
- *
+ * 
  * Get the type ID for the fundamental type number @x.
- * Use g_type_fundamental_next() instead of this macro to create new fundamental
+ * Use g_type_fundamental_next() instead of this macro to create new fundamental 
  * types.
  *
  * Returns: the GType
@@ -20147,34 +20147,34 @@ G_BEGIN_DECLS
 #define	G_TYPE_MAKE_FUNDAMENTAL(x)	((GType) ((x) << G_TYPE_FUNDAMENTAL_SHIFT))
 /**
  * G_TYPE_RESERVED_GLIB_FIRST:
- *
+ * 
  * First fundamental type number to create a new fundamental type id with
  * G_TYPE_MAKE_FUNDAMENTAL() reserved for GLib.
  */
 #define G_TYPE_RESERVED_GLIB_FIRST	(22)
 /**
  * G_TYPE_RESERVED_GLIB_LAST:
- *
+ * 
  * Last fundamental type number reserved for GLib.
  */
 #define G_TYPE_RESERVED_GLIB_LAST	(31)
 /**
  * G_TYPE_RESERVED_BSE_FIRST:
- *
+ * 
  * First fundamental type number to create a new fundamental type id with
  * G_TYPE_MAKE_FUNDAMENTAL() reserved for BSE.
  */
 #define G_TYPE_RESERVED_BSE_FIRST	(32)
 /**
  * G_TYPE_RESERVED_BSE_LAST:
- *
+ * 
  * Last fundamental type number reserved for BSE.
  */
 #define G_TYPE_RESERVED_BSE_LAST	(48)
 /**
  * G_TYPE_RESERVED_USER_FIRST:
- *
- * First available fundamental type number to create new fundamental
+ * 
+ * First available fundamental type number to create new fundamental 
  * type id with G_TYPE_MAKE_FUNDAMENTAL().
  */
 #define G_TYPE_RESERVED_USER_FIRST	(49)
@@ -20185,7 +20185,7 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_FUNDAMENTAL:
  * @type: A #GType value
- *
+ * 
  * Checks if @type is a fundamental type.
  *
  * Returns: %TRUE on success
@@ -20194,7 +20194,7 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_DERIVED:
  * @type: A #GType value
- *
+ * 
  * Checks if @type is derived (or in object-oriented terminology:
  * inherited) from another type (this holds true for all non-fundamental
  * types).
@@ -20205,12 +20205,12 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_INTERFACE:
  * @type: A #GType value
- *
+ * 
  * Checks if @type is an interface type.
  * An interface type provides a pure API, the implementation
  * of which is provided by another type (which is then said to conform
  * to the interface).  GLib interfaces are somewhat analogous to Java
- * interfaces and C++ classes containing only pure virtual functions,
+ * interfaces and C++ classes containing only pure virtual functions, 
  * with the difference that GType interfaces are not derivable (but see
  * g_type_interface_add_prerequisite() for an alternative).
  *
@@ -20220,7 +20220,7 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_CLASSED:
  * @type: A #GType value
- *
+ * 
  * Checks if @type is a classed type.
  *
  * Returns: %TRUE on success
@@ -20229,7 +20229,7 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_INSTANTIATABLE:
  * @type: A #GType value
- *
+ * 
  * Checks if @type can be instantiated.  Instantiation is the
  * process of creating an instance (object) of this type.
  *
@@ -20239,7 +20239,7 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_DERIVABLE:
  * @type: A #GType value
- *
+ * 
  * Checks if @type is a derivable type.  A derivable type can
  * be used as the base class of a flat (single-level) class hierarchy.
  *
@@ -20249,7 +20249,7 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_DEEP_DERIVABLE:
  * @type: A #GType value
- *
+ * 
  * Checks if @type is a deep derivable type.  A deep derivable type
  * can be used as the base class of a deep (multi-level) class hierarchy.
  *
@@ -20259,7 +20259,7 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_ABSTRACT:
  * @type: A #GType value
- *
+ * 
  * Checks if @type is an abstract type.  An abstract type cannot be
  * instantiated and is normally used as an abstract base class for
  * derived classes.
@@ -20270,7 +20270,7 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_VALUE_ABSTRACT:
  * @type: A #GType value
- *
+ * 
  * Checks if @type is an abstract value type.  An abstract value type introduces
  * a value table, but can't be used for g_value_init() and is normally used as
  * an abstract base type for derived value types.
@@ -20281,8 +20281,8 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_VALUE_TYPE:
  * @type: A #GType value
- *
- * Checks if @type is a value type and can be used with g_value_init().
+ * 
+ * Checks if @type is a value type and can be used with g_value_init(). 
  *
  * Returns: %TRUE on success
  */
@@ -20290,7 +20290,7 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_HAS_VALUE_TABLE:
  * @type: A #GType value
- *
+ * 
  * Checks if @type has a #GTypeValueTable.
  *
  * Returns: %TRUE on success
@@ -20302,7 +20302,7 @@ G_BEGIN_DECLS
  */
 /**
  * GType:
- *
+ * 
  * A numerical value which represents the unique identifier of a registered
  * type.
  */
@@ -20328,7 +20328,7 @@ typedef struct _GTypeQuery		GTypeQuery;
  */
 /**
  * GTypeClass:
- *
+ * 
  * An opaque structure used as the base of all classes.
  */
 struct _GTypeClass
@@ -20338,7 +20338,7 @@ struct _GTypeClass
 };
 /**
  * GTypeInstance:
- *
+ * 
  * An opaque structure used as the base of all type instances.
  */
 struct _GTypeInstance
@@ -20348,7 +20348,7 @@ struct _GTypeInstance
 };
 /**
  * GTypeInterface:
- *
+ * 
  * An opaque structure used as the base of all interface types.
  */
 struct _GTypeInterface
@@ -20363,7 +20363,7 @@ struct _GTypeInterface
  * @type_name: the name of the type
  * @class_size: the size of the class structure
  * @instance_size: the size of the instance structure
- *
+ * 
  * A structure holding information for a specific type.
  * It is filled in by the g_type_query() function.
  */
@@ -20383,11 +20383,11 @@ struct _GTypeQuery
 /**
  * G_TYPE_CHECK_INSTANCE:
  * @instance: Location of a #GTypeInstance structure
- *
+ * 
  * Checks if @instance is a valid #GTypeInstance structure,
  * otherwise issues a warning and returns %FALSE. %NULL is not a valid
  * #GTypeInstance.
- *
+ * 
  * This macro should only be used in type implementations.
  *
  * Returns: %TRUE on success
@@ -20398,13 +20398,13 @@ struct _GTypeQuery
  * @instance: (nullable): Location of a #GTypeInstance structure
  * @g_type: The type to be returned
  * @c_type: The corresponding C type of @g_type
- *
+ * 
  * Checks that @instance is an instance of the type identified by @g_type
- * and issues a warning if this is not the case. Returns @instance casted
+ * and issues a warning if this is not the case. Returns @instance casted 
  * to a pointer to @c_type.
  *
  * No warning will be issued if @instance is %NULL, and %NULL will be returned.
- *
+ * 
  * This macro should only be used in type implementations.
  */
 #define G_TYPE_CHECK_INSTANCE_CAST(instance, g_type, c_type)    (_G_TYPE_CIC ((instance), (g_type), c_type))
@@ -20412,10 +20412,10 @@ struct _GTypeQuery
  * G_TYPE_CHECK_INSTANCE_TYPE:
  * @instance: (nullable): Location of a #GTypeInstance structure.
  * @g_type: The type to be checked
- *
+ * 
  * Checks if @instance is an instance of the type identified by @g_type. If
  * @instance is %NULL, %FALSE will be returned.
- *
+ * 
  * This macro should only be used in type implementations.
  *
  * Returns: %TRUE on success
@@ -20439,13 +20439,13 @@ struct _GTypeQuery
  * @instance: Location of the #GTypeInstance structure
  * @g_type: The #GType of the class to be returned
  * @c_type: The C type of the class structure
- *
+ * 
  * Get the class structure of a given @instance, casted
  * to a specified ancestor type @g_type of the instance.
- *
+ * 
  * Note that while calling a GInstanceInitFunc(), the class pointer
  * gets modified, so it might not always return the expected pointer.
- *
+ * 
  * This macro should only be used in type implementations.
  *
  * Returns: a pointer to the class structure
@@ -20456,9 +20456,9 @@ struct _GTypeQuery
  * @instance: Location of the #GTypeInstance structure
  * @g_type: The #GType of the interface to be returned
  * @c_type: The C type of the interface structure
- *
+ * 
  * Get the interface structure for interface @g_type of a given @instance.
- *
+ * 
  * This macro should only be used in type implementations.
  *
  * Returns: a pointer to the interface structure
@@ -20469,11 +20469,11 @@ struct _GTypeQuery
  * @g_class: Location of a #GTypeClass structure
  * @g_type: The type to be returned
  * @c_type: The corresponding C type of class structure of @g_type
- *
+ * 
  * Checks that @g_class is a class structure of the type identified by @g_type
- * and issues a warning if this is not the case. Returns @g_class casted
+ * and issues a warning if this is not the case. Returns @g_class casted 
  * to a pointer to @c_type. %NULL is not a valid class structure.
- *
+ * 
  * This macro should only be used in type implementations.
  */
 #define G_TYPE_CHECK_CLASS_CAST(g_class, g_type, c_type)        (_G_TYPE_CCC ((g_class), (g_type), c_type))
@@ -20481,10 +20481,10 @@ struct _GTypeQuery
  * G_TYPE_CHECK_CLASS_TYPE:
  * @g_class: (nullable): Location of a #GTypeClass structure
  * @g_type: The type to be checked
- *
- * Checks if @g_class is a class structure of the type identified by
+ * 
+ * Checks if @g_class is a class structure of the type identified by 
  * @g_type. If @g_class is %NULL, %FALSE will be returned.
- *
+ * 
  * This macro should only be used in type implementations.
  *
  * Returns: %TRUE on success
@@ -20493,10 +20493,10 @@ struct _GTypeQuery
 /**
  * G_TYPE_CHECK_VALUE:
  * @value: a #GValue
- *
+ * 
  * Checks if @value has been initialized to hold values
  * of a value type.
- *
+ * 
  * This macro should only be used in type implementations.
  *
  * Returns: %TRUE on success
@@ -20506,10 +20506,10 @@ struct _GTypeQuery
  * G_TYPE_CHECK_VALUE_TYPE:
  * @value: a #GValue
  * @g_type: The type to be checked
- *
+ * 
  * Checks if @value has been initialized to hold values
- * of type @g_type.
- *
+ * of type @g_type. 
+ * 
  * This macro should only be used in type implementations.
  *
  * Returns: %TRUE on success
@@ -20518,9 +20518,9 @@ struct _GTypeQuery
 /**
  * G_TYPE_FROM_INSTANCE:
  * @instance: Location of a valid #GTypeInstance structure
- *
- * Get the type identifier from a given @instance structure.
- *
+ * 
+ * Get the type identifier from a given @instance structure. 
+ * 
  * This macro should only be used in type implementations.
  *
  * Returns: the #GType
@@ -20529,9 +20529,9 @@ struct _GTypeQuery
 /**
  * G_TYPE_FROM_CLASS:
  * @g_class: Location of a valid #GTypeClass structure
- *
+ * 
  * Get the type identifier from a given @class structure.
- *
+ * 
  * This macro should only be used in type implementations.
  *
  * Returns: the #GType
@@ -20540,9 +20540,9 @@ struct _GTypeQuery
 /**
  * G_TYPE_FROM_INTERFACE:
  * @g_iface: Location of a valid #GTypeInterface structure
- *
+ * 
  * Get the type identifier from a given @interface structure.
- *
+ * 
  * This macro should only be used in type implementations.
  *
  * Returns: the #GType
@@ -20554,13 +20554,13 @@ struct _GTypeQuery
  * @instance: the instance of a type deriving from @private_type
  * @g_type: the type identifying which private data to retrieve
  * @c_type: The C type for the private structure
- *
+ * 
  * Gets the private structure for a particular type.
  * The private structure must have been registered in the
  * class_init function with g_type_class_add_private().
- *
+ * 
  * This macro should only be used in type implementations.
- *
+ * 
  * Since: 2.4
  * Deprecated: 2.58: Use %G_ADD_PRIVATE and the generated
  *   `your_type_get_instance_private()` function instead
@@ -20573,13 +20573,13 @@ struct _GTypeQuery
  * @klass: the class of a type deriving from @private_type
  * @g_type: the type identifying which private data to retrieve
  * @c_type: The C type for the private structure
- *
+ * 
  * Gets the private class structure for a particular type.
  * The private structure must have been registered in the
  * get_type() function with g_type_add_class_private().
- *
+ * 
  * This macro should only be used in type implementations.
- *
+ * 
  * Since: 2.24
  * Returns: (not nullable): a pointer to the private data structure
  */
@@ -20685,7 +20685,7 @@ int                   g_type_get_instance_count      (GType            type);
 /**
  * GBaseInitFunc:
  * @g_class: (type GObject.TypeClass): The #GTypeClass structure to initialize
- *
+ * 
  * A callback function used by the type system to do base initialization
  * of the class structures of derived types. It is called as part of the
  * initialization process of all derived classes and should reallocate
@@ -20699,7 +20699,7 @@ typedef void   (*GBaseInitFunc)              (gpointer         g_class);
 /**
  * GBaseFinalizeFunc:
  * @g_class: (type GObject.TypeClass): The #GTypeClass structure to finalize
- *
+ * 
  * A callback function used by the type system to finalize those portions
  * of a derived types class structure that were setup from the corresponding
  * GBaseInitFunc() function. Class finalization basically works the inverse
@@ -20711,13 +20711,13 @@ typedef void   (*GBaseFinalizeFunc)          (gpointer         g_class);
  * GClassInitFunc:
  * @g_class: (type GObject.TypeClass): The #GTypeClass structure to initialize.
  * @class_data: The @class_data member supplied via the #GTypeInfo structure.
- *
+ * 
  * A callback function used by the type system to initialize the class
  * of a specific type. This function should initialize all static class
  * members.
  *
  * The initialization process of a class involves:
- *
+ * 
  * - Copying common members from the parent class over to the
  *   derived class structure.
  * - Zero initialization of the remaining members not copied
@@ -20739,7 +20739,7 @@ typedef void   (*GBaseFinalizeFunc)          (gpointer         g_class);
  *
  * An example may help to correspond the intend of the different class
  * initializers:
- *
+ * 
  * |[<!-- language="C" -->
  * typedef struct {
  *   GObjectClass parent_class;
@@ -20761,7 +20761,7 @@ typedef void   (*GBaseFinalizeFunc)          (gpointer         g_class);
  * {
  *   class->static_integer = 42;
  * }
- *
+ * 
  * typedef struct {
  *   TypeAClass   parent_class;
  *   gfloat       static_float;
@@ -20792,7 +20792,7 @@ typedef void   (*GBaseFinalizeFunc)          (gpointer         g_class);
  * its dynamic members (dynamic_string), and finally calling its GClassInitFunc()
  * type_a_class_init() to initialize its static members (static_integer).
  * The first step in the initialization process of TypeBClass is then
- * a plain memory copy of the contents of TypeAClass into TypeBClass and
+ * a plain memory copy of the contents of TypeAClass into TypeBClass and 
  * zero-initialization of the remaining fields in TypeBClass.
  * The dynamic members of TypeAClass within TypeBClass now need
  * reinitialization which is performed by calling type_a_base_class_init()
@@ -20814,7 +20814,7 @@ typedef void   (*GClassInitFunc)             (gpointer         g_class,
  * GClassFinalizeFunc:
  * @g_class: (type GObject.TypeClass): The #GTypeClass structure to finalize
  * @class_data: The @class_data member supplied via the #GTypeInfo structure
- *
+ * 
  * A callback function used by the type system to finalize a class.
  * This function is rarely needed, as dynamically allocated class resources
  * should be handled by GBaseInitFunc() and GBaseFinalizeFunc().
@@ -20830,7 +20830,7 @@ typedef void   (*GClassFinalizeFunc)         (gpointer         g_class,
  * @instance: The instance to initialize
  * @g_class: (type GObject.TypeClass): The class of the type the instance is
  *    created for
- *
+ * 
  * A callback function used by the type system to initialize a new
  * instance of a type. This function initializes all instance members and
  * allocates any resources required by it.
@@ -20849,7 +20849,7 @@ typedef void   (*GInstanceInitFunc)          (GTypeInstance   *instance,
  * GInterfaceInitFunc:
  * @g_iface: (type GObject.TypeInterface): The interface structure to initialize
  * @iface_data: The @interface_data supplied via the #GInterfaceInfo structure
- *
+ * 
  * A callback function used by the type system to initialize a new
  * interface.  This function should initialize all internal data and
  * allocate any resources required by the interface.
@@ -20863,7 +20863,7 @@ typedef void   (*GInterfaceInitFunc)         (gpointer         g_iface,
  * GInterfaceFinalizeFunc:
  * @g_iface: (type GObject.TypeInterface): The interface structure to finalize
  * @iface_data: The @interface_data supplied via the #GInterfaceInfo structure
- *
+ * 
  * A callback function used by the type system to finalize an interface.
  * This function should destroy any internal data and release any resources
  * allocated by the corresponding GInterfaceInitFunc() function.
@@ -20875,18 +20875,18 @@ typedef void   (*GInterfaceFinalizeFunc)     (gpointer         g_iface,
  * @cache_data: data that was given to the g_type_add_class_cache_func() call
  * @g_class: (type GObject.TypeClass): The #GTypeClass structure which is
  *    unreferenced
- *
- * A callback function which is called when the reference count of a class
+ * 
+ * A callback function which is called when the reference count of a class 
  * drops to zero. It may use g_type_class_ref() to prevent the class from
- * being freed. You should not call g_type_class_unref() from a
- * #GTypeClassCacheFunc function to prevent infinite recursion, use
+ * being freed. You should not call g_type_class_unref() from a 
+ * #GTypeClassCacheFunc function to prevent infinite recursion, use 
  * g_type_class_unref_uncached() instead.
- *
- * The functions have to check the class id passed in to figure
+ * 
+ * The functions have to check the class id passed in to figure 
  * whether they actually want to cache the class of this type, since all
  * classes are routed through the same #GTypeClassCacheFunc chain.
- *
- * Returns: %TRUE to stop further #GTypeClassCacheFuncs from being
+ * 
+ * Returns: %TRUE to stop further #GTypeClassCacheFuncs from being 
  *  called, %FALSE to continue
  */
 typedef gboolean (*GTypeClassCacheFunc)	     (gpointer	       cache_data,
@@ -20896,10 +20896,10 @@ typedef gboolean (*GTypeClassCacheFunc)	     (gpointer	       cache_data,
  * @check_data: data passed to g_type_add_interface_check()
  * @g_iface: (type GObject.TypeInterface): the interface that has been
  *    initialized
- *
+ * 
  * A callback called after an interface vtable is initialized.
  * See g_type_add_interface_check().
- *
+ * 
  * Since: 2.4
  */
 typedef void     (*GTypeInterfaceCheckFunc)  (gpointer	       check_data,
@@ -20910,7 +20910,7 @@ typedef void     (*GTypeInterfaceCheckFunc)  (gpointer	       check_data,
  * @G_TYPE_FLAG_INSTANTIATABLE: Indicates an instantiatable type (implies classed)
  * @G_TYPE_FLAG_DERIVABLE: Indicates a flat derivable type
  * @G_TYPE_FLAG_DEEP_DERIVABLE: Indicates a deep derivable type (implies derivable)
- *
+ * 
  * Bit masks used to check or determine specific characteristics of a
  * fundamental type.
  */
@@ -20928,7 +20928,7 @@ typedef enum    /*< skip >*/
  * @G_TYPE_FLAG_VALUE_ABSTRACT: Indicates an abstract value type, i.e. a type
  *  that introduces a value table, but can't be used for
  *  g_value_init()
- *
+ * 
  * Bit masks used to check or determine characteristics of a type.
  */
 typedef enum    /*< skip >*/
@@ -20942,9 +20942,9 @@ typedef enum    /*< skip >*/
  * @base_init: Location of the base initialization function (optional)
  * @base_finalize: Location of the base finalization function (optional)
  * @class_init: Location of the class initialization function for
- *  classed and instantiatable types. Location of the default vtable
- *  inititalization function for interface types. (optional) This function
- *  is used both to fill in virtual functions in the class or default vtable,
+ *  classed and instantiatable types. Location of the default vtable 
+ *  inititalization function for interface types. (optional) This function 
+ *  is used both to fill in virtual functions in the class or default vtable, 
  *  and to do type-specific setup such as registering signals and object
  *  properties.
  * @class_finalize: Location of the class finalization function for
@@ -20956,7 +20956,7 @@ typedef enum    /*< skip >*/
  * @instance_init: Location of the instance initialization function (optional, for instantiatable types only)
  * @value_table: A #GTypeValueTable function table for generic handling of GValues
  *  of this type (usually only useful for fundamental types)
- *
+ * 
  * This structure is used to provide the type system with the information
  * required to initialize and destruct (finalize) a type's class and
  * its instances.
@@ -20971,29 +20971,29 @@ struct _GTypeInfo
 {
   /* interface types, classed types, instantiated types */
   guint16                class_size;
-
+  
   GBaseInitFunc          base_init;
   GBaseFinalizeFunc      base_finalize;
-
+  
   /* interface types, classed types, instantiated types */
   GClassInitFunc         class_init;
   GClassFinalizeFunc     class_finalize;
   gconstpointer          class_data;
-
+  
   /* instantiated types */
   guint16                instance_size;
   guint16                n_preallocs;
   GInstanceInitFunc      instance_init;
-
+  
   /* value handling */
   const GTypeValueTable	*value_table;
 };
 /**
  * GTypeFundamentalInfo:
  * @type_flags: #GTypeFundamentalFlags describing the characteristics of the fundamental type
- *
+ * 
  * A structure that provides information to the type system which is
- * used specifically for managing fundamental types.
+ * used specifically for managing fundamental types.  
  */
 struct _GTypeFundamentalInfo
 {
@@ -21004,7 +21004,7 @@ struct _GTypeFundamentalInfo
  * @interface_init: location of the interface initialization function
  * @interface_finalize: location of the interface finalization function
  * @interface_data: user-supplied data passed to the interface init/finalize functions
- *
+ * 
  * A structure that provides information to the type system which is
  * used specifically for managing interface types.
  */
@@ -21104,7 +21104,7 @@ struct _GInterfaceInfo
  *  array.  To deviate from our string example for a moment, and taking
  *  a look at an exemplary implementation for collect_value() of
  *  #GObject:
- *  |[<!-- language="C" -->
+ *  |[<!-- language="C" --> 
  *    GObject *object = G_OBJECT (collect_values[0].v_pointer);
  *    g_return_val_if_fail (object != NULL,
  *       g_strdup_printf ("Object passed as invalid NULL pointer"));
@@ -21163,7 +21163,7 @@ struct _GInterfaceInfo
  *    *object_p = g_object_ref (value->data[0].v_pointer);
  *  return NULL;
  *  ]|
- *
+ * 
  * The #GTypeValueTable provides the functions required by the #GValue
  * implementation, to serve as a container for values of a type.
  */
@@ -21200,7 +21200,7 @@ GType g_type_register_static_simple     (GType                       parent_type
 					 guint                       instance_size,
 					 GInstanceInitFunc           instance_init,
 					 GTypeFlags	             flags);
-
+  
 GLIB_AVAILABLE_IN_ALL
 GType g_type_register_dynamic		(GType			     parent_type,
 					 const gchar		    *type_name,
@@ -21514,16 +21514,16 @@ guint     g_type_get_type_registration_serial (void);
 /**
  * G_DEFINE_TYPE:
  * @TN: The name of the new type, in Camel case.
- * @t_n: The name of the new type, in lowercase, with words
+ * @t_n: The name of the new type, in lowercase, with words 
  *  separated by `_`.
  * @T_P: The #GType of the parent type.
- *
+ * 
  * A convenience macro for type implementations, which declares a class
  * initialization function, an instance initialization function (see #GTypeInfo
  * for information about these) and a static variable named `t_n_parent_class`
  * pointing to the parent class. Furthermore, it defines a `*_get_type()` function.
  * See G_DEFINE_TYPE_EXTENDED() for an example.
- *
+ * 
  * Since: 2.4
  */
 #define G_DEFINE_TYPE(TN, t_n, T_P)			    G_DEFINE_TYPE_EXTENDED (TN, t_n, T_P, 0, {})
@@ -21533,29 +21533,29 @@ guint     g_type_get_type_registration_serial (void);
  * @t_n: The name of the new type in lowercase, with words separated by `_`.
  * @T_P: The #GType of the parent type.
  * @_C_: Custom code that gets inserted in the `*_get_type()` function.
- *
- * A convenience macro for type implementations.
- * Similar to G_DEFINE_TYPE(), but allows you to insert custom code into the
+ * 
+ * A convenience macro for type implementations.  
+ * Similar to G_DEFINE_TYPE(), but allows you to insert custom code into the 
  * `*_get_type()` function, e.g. interface implementations via G_IMPLEMENT_INTERFACE().
  * See G_DEFINE_TYPE_EXTENDED() for an example.
- *
+ * 
  * Since: 2.4
  */
 #define G_DEFINE_TYPE_WITH_CODE(TN, t_n, T_P, _C_)	    _G_DEFINE_TYPE_EXTENDED_BEGIN (TN, t_n, T_P, 0) {_C_;} _G_DEFINE_TYPE_EXTENDED_END()
 /**
  * G_DEFINE_TYPE_WITH_PRIVATE:
  * @TN: The name of the new type, in Camel case.
- * @t_n: The name of the new type, in lowercase, with words
+ * @t_n: The name of the new type, in lowercase, with words 
  *  separated by `_`.
  * @T_P: The #GType of the parent type.
- *
+ * 
  * A convenience macro for type implementations, which declares a class
  * initialization function, an instance initialization function (see #GTypeInfo
  * for information about these), a static variable named `t_n_parent_class`
  * pointing to the parent class, and adds private instance data to the type.
  * Furthermore, it defines a `*_get_type()` function. See G_DEFINE_TYPE_EXTENDED()
  * for an example.
- *
+ * 
  * Note that private structs added with this macros must have a struct
  * name of the form `TN ## Private`.
  *
@@ -21570,44 +21570,44 @@ guint     g_type_get_type_registration_serial (void);
 /**
  * G_DEFINE_ABSTRACT_TYPE:
  * @TN: The name of the new type, in Camel case.
- * @t_n: The name of the new type, in lowercase, with words
+ * @t_n: The name of the new type, in lowercase, with words 
  *  separated by `_`.
  * @T_P: The #GType of the parent type.
- *
- * A convenience macro for type implementations.
- * Similar to G_DEFINE_TYPE(), but defines an abstract type.
+ * 
+ * A convenience macro for type implementations. 
+ * Similar to G_DEFINE_TYPE(), but defines an abstract type. 
  * See G_DEFINE_TYPE_EXTENDED() for an example.
- *
+ * 
  * Since: 2.4
  */
 #define G_DEFINE_ABSTRACT_TYPE(TN, t_n, T_P)		    G_DEFINE_TYPE_EXTENDED (TN, t_n, T_P, G_TYPE_FLAG_ABSTRACT, {})
 /**
  * G_DEFINE_ABSTRACT_TYPE_WITH_CODE:
  * @TN: The name of the new type, in Camel case.
- * @t_n: The name of the new type, in lowercase, with words
+ * @t_n: The name of the new type, in lowercase, with words 
  *  separated by `_`.
  * @T_P: The #GType of the parent type.
  * @_C_: Custom code that gets inserted in the `type_name_get_type()` function.
- *
+ * 
  * A convenience macro for type implementations.
  * Similar to G_DEFINE_TYPE_WITH_CODE(), but defines an abstract type and
  * allows you to insert custom code into the `*_get_type()` function, e.g.
  * interface implementations  via G_IMPLEMENT_INTERFACE().
  * See G_DEFINE_TYPE_EXTENDED() for an example.
- *
+ * 
  * Since: 2.4
  */
 #define G_DEFINE_ABSTRACT_TYPE_WITH_CODE(TN, t_n, T_P, _C_) _G_DEFINE_TYPE_EXTENDED_BEGIN (TN, t_n, T_P, G_TYPE_FLAG_ABSTRACT) {_C_;} _G_DEFINE_TYPE_EXTENDED_END()
 /**
  * G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE:
  * @TN: The name of the new type, in Camel case.
- * @t_n: The name of the new type, in lowercase, with words
+ * @t_n: The name of the new type, in lowercase, with words 
  *  separated by `_`.
  * @T_P: The #GType of the parent type.
  *
- * Similar to G_DEFINE_TYPE_WITH_PRIVATE(), but defines an abstract type.
+ * Similar to G_DEFINE_TYPE_WITH_PRIVATE(), but defines an abstract type. 
  * See G_DEFINE_TYPE_EXTENDED() for an example.
- *
+ * 
  * Since: 2.38
  */
 #define G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE(TN, t_n, T_P)   G_DEFINE_TYPE_EXTENDED (TN, t_n, T_P, G_TYPE_FLAG_ABSTRACT, G_ADD_PRIVATE (TN))
@@ -22273,7 +22273,7 @@ const gchar *    g_type_name_from_class         (GTypeClass	*g_class);
 #endif /* !__GNUC__ */
 /**
  * G_TYPE_FLAG_RESERVED_ID_BIT:
- *
+ * 
  * A bit in the type number that's supposed to be left untouched.
  */
 #define	G_TYPE_FLAG_RESERVED_ID_BIT	((GType) (1 << 0))
@@ -22313,18 +22313,18 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_VALUE:
  * @type: A #GType value.
- *
+ * 
  * Checks whether the passed in type ID can be used for g_value_init().
  * That is, this macro checks whether this type provides an implementation
  * of the #GTypeValueTable functions required for a type to create a #GValue of.
- *
+ * 
  * Returns: Whether @type is suitable as a #GValue type.
  */
 #define	G_TYPE_IS_VALUE(type)		(g_type_check_is_value_type (type))
 /**
  * G_IS_VALUE:
  * @value: A #GValue structure.
- *
+ * 
  * Checks if @value is a valid and initialized #GValue structure.
  *
  * Returns: %TRUE on success.
@@ -22367,7 +22367,7 @@ G_BEGIN_DECLS
  * GValueTransform:
  * @src_value: Source value.
  * @dest_value: Target value.
- *
+ * 
  * The type of value transformation functions which can be registered with
  * g_value_register_transform_func().
  *
@@ -22377,7 +22377,7 @@ typedef void (*GValueTransform) (const GValue *src_value,
 				 GValue       *dest_value);
 /**
  * GValue:
- *
+ * 
  * An opaque structure used to hold different types of values.
  * The data within the structure has protected scope: it is accessible only
  * to functions within a #GTypeValueTable structure, or implementations of
@@ -22519,14 +22519,14 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_PARAM:
  * @type: a #GType ID
- *
+ * 
  * Checks whether @type "is a" %G_TYPE_PARAM.
  */
 #define G_TYPE_IS_PARAM(type)		(G_TYPE_FUNDAMENTAL (type) == G_TYPE_PARAM)
 /**
  * G_PARAM_SPEC:
  * @pspec: a valid #GParamSpec
- *
+ * 
  * Casts a derived #GParamSpec object (e.g. of type #GParamSpecInt) into
  * a #GParamSpec object.
  */
@@ -22534,7 +22534,7 @@ G_BEGIN_DECLS
 /**
  * G_IS_PARAM_SPEC:
  * @pspec: a #GParamSpec
- *
+ * 
  * Checks whether @pspec "is a" valid #GParamSpec structure of type %G_TYPE_PARAM
  * or derived.
  */
@@ -22546,22 +22546,22 @@ G_BEGIN_DECLS
 /**
  * G_PARAM_SPEC_CLASS:
  * @pclass: a valid #GParamSpecClass
- *
+ * 
  * Casts a derived #GParamSpecClass structure into a #GParamSpecClass structure.
  */
 #define G_PARAM_SPEC_CLASS(pclass)      (G_TYPE_CHECK_CLASS_CAST ((pclass), G_TYPE_PARAM, GParamSpecClass))
 /**
  * G_IS_PARAM_SPEC_CLASS:
  * @pclass: a #GParamSpecClass
- *
- * Checks whether @pclass "is a" valid #GParamSpecClass structure of type
+ * 
+ * Checks whether @pclass "is a" valid #GParamSpecClass structure of type 
  * %G_TYPE_PARAM or derived.
  */
 #define G_IS_PARAM_SPEC_CLASS(pclass)   (G_TYPE_CHECK_CLASS_TYPE ((pclass), G_TYPE_PARAM))
 /**
  * G_PARAM_SPEC_GET_CLASS:
  * @pspec: a valid #GParamSpec
- *
+ * 
  * Retrieves the #GParamSpecClass of a #GParamSpec.
  */
 #define G_PARAM_SPEC_GET_CLASS(pspec)	(G_TYPE_INSTANCE_GET_CLASS ((pspec), G_TYPE_PARAM, GParamSpecClass))
@@ -22571,34 +22571,34 @@ G_BEGIN_DECLS
 /**
  * G_PARAM_SPEC_TYPE:
  * @pspec: a valid #GParamSpec
- *
+ * 
  * Retrieves the #GType of this @pspec.
  */
 #define G_PARAM_SPEC_TYPE(pspec)	(G_TYPE_FROM_INSTANCE (pspec))
 /**
  * G_PARAM_SPEC_TYPE_NAME:
  * @pspec: a valid #GParamSpec
- *
+ * 
  * Retrieves the #GType name of this @pspec.
  */
 #define G_PARAM_SPEC_TYPE_NAME(pspec)	(g_type_name (G_PARAM_SPEC_TYPE (pspec)))
 /**
  * G_PARAM_SPEC_VALUE_TYPE:
  * @pspec: a valid #GParamSpec
- *
+ * 
  * Retrieves the #GType to initialize a #GValue for this parameter.
  */
 #define	G_PARAM_SPEC_VALUE_TYPE(pspec)	(G_PARAM_SPEC (pspec)->value_type)
 /**
  * G_VALUE_HOLDS_PARAM:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values derived from type %G_TYPE_PARAM.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_PARAM(value)	(G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_PARAM))
-
+       
 
 /* --- flags --- */
 /**
@@ -22610,17 +22610,17 @@ G_BEGIN_DECLS
  * @G_PARAM_CONSTRUCT_ONLY: the parameter can only be set upon object construction
  * @G_PARAM_LAX_VALIDATION: upon parameter conversion (see g_param_value_convert())
  *  strict validation is not required
- * @G_PARAM_STATIC_NAME: the string used as name when constructing the
+ * @G_PARAM_STATIC_NAME: the string used as name when constructing the 
  *  parameter is guaranteed to remain valid and
- *  unmodified for the lifetime of the parameter.
+ *  unmodified for the lifetime of the parameter. 
  *  Since 2.8
  * @G_PARAM_STATIC_NICK: the string used as nick when constructing the
  *  parameter is guaranteed to remain valid and
  *  unmmodified for the lifetime of the parameter.
  *  Since 2.8
- * @G_PARAM_STATIC_BLURB: the string used as blurb when constructing the
- *  parameter is guaranteed to remain valid and
- *  unmodified for the lifetime of the parameter.
+ * @G_PARAM_STATIC_BLURB: the string used as blurb when constructing the 
+ *  parameter is guaranteed to remain valid and 
+ *  unmodified for the lifetime of the parameter. 
  *  Since 2.8
  * @G_PARAM_EXPLICIT_NOTIFY: calls to g_object_set_property() for this
  *   property will not automatically result in a "notify" signal being
@@ -22631,7 +22631,7 @@ G_BEGIN_DECLS
  *  in a future version. A warning will be generated if it is used
  *  while running with G_ENABLE_DIAGNOSTIC=1.
  *  Since 2.26
- *
+ * 
  * Through the #GParamFlags flag values, certain aspects of parameters
  * can be configured. See also #G_PARAM_STATIC_STRINGS.
  */
@@ -22655,22 +22655,22 @@ typedef enum
 
 /**
  * G_PARAM_STATIC_STRINGS:
- *
+ * 
  * #GParamFlags value alias for %G_PARAM_STATIC_NAME | %G_PARAM_STATIC_NICK | %G_PARAM_STATIC_BLURB.
- *
+ * 
  * Since 2.13.0
  */
 #define	G_PARAM_STATIC_STRINGS (G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB)
 /* bits in the range 0xffffff00 are reserved for 3rd party usage */
 /**
  * G_PARAM_MASK:
- *
+ * 
  * Mask containing the bits of #GParamSpec.flags which are reserved for GLib.
  */
 #define	G_PARAM_MASK		(0x000000ff)
 /**
  * G_PARAM_USER_SHIFT:
- *
+ * 
  * Minimum shift count to be used for user defined flags, to be stored in
  * #GParamSpec.flags. The maximum allowed is 10.
  */
@@ -22688,7 +22688,7 @@ typedef struct _GParamSpecPool  GParamSpecPool;
  * @flags: #GParamFlags flags for this parameter
  * @value_type: the #GValue type for this parameter
  * @owner_type: #GType type that uses (introduces) this parameter
- *
+ * 
  * All other fields of the GParamSpec struct are private and
  * should not be used directly.
  */
@@ -22712,17 +22712,17 @@ struct _GParamSpec
  * GParamSpecClass:
  * @g_type_class: the parent class
  * @value_type: the #GValue type for this parameter
- * @finalize: The instance finalization function (optional), should chain
+ * @finalize: The instance finalization function (optional), should chain 
  *  up to the finalize method of the parent class.
  * @value_set_default: Resets a @value to the default value for this type
- *  (recommended, the default is g_value_reset()), see
+ *  (recommended, the default is g_value_reset()), see 
  *  g_param_value_set_default().
- * @value_validate: Ensures that the contents of @value comply with the
- *  specifications set out by this type (optional), see
+ * @value_validate: Ensures that the contents of @value comply with the 
+ *  specifications set out by this type (optional), see 
  *  g_param_value_validate().
  * @values_cmp: Compares @value1 with @value2 according to this type
  *  (recommended, the default is memcmp()), see g_param_values_cmp().
- *
+ * 
  * The class structure for the GParamSpec type.
  * Normally, GParamSpec classes are filled by
  * g_param_type_register_static().
@@ -22750,7 +22750,7 @@ struct _GParamSpecClass
  * GParameter:
  * @name: the parameter name
  * @value: the parameter value
- *
+ * 
  * The GParameter struct is an auxiliary structure used
  * to hand parameter name/value pairs to g_object_newv().
  *
@@ -22844,21 +22844,21 @@ typedef struct _GParamSpecTypeInfo GParamSpecTypeInfo;
  * @instance_init: Location of the instance initialization function (optional).
  * @value_type: The #GType of values conforming to this #GParamSpec
  * @finalize: The instance finalization function (optional).
- * @value_set_default: Resets a @value to the default value for @pspec
- *  (recommended, the default is g_value_reset()), see
+ * @value_set_default: Resets a @value to the default value for @pspec 
+ *  (recommended, the default is g_value_reset()), see 
  *  g_param_value_set_default().
- * @value_validate: Ensures that the contents of @value comply with the
- *  specifications set out by @pspec (optional), see
+ * @value_validate: Ensures that the contents of @value comply with the 
+ *  specifications set out by @pspec (optional), see 
  *  g_param_value_validate().
- * @values_cmp: Compares @value1 with @value2 according to @pspec
+ * @values_cmp: Compares @value1 with @value2 according to @pspec 
  *  (recommended, the default is memcmp()), see g_param_values_cmp().
- *
+ * 
  * This structure is used to provide the type system with the information
  * required to initialize and destruct (finalize) a parameter's class and
  * instances thereof.
- * The initialized structure is passed to the g_param_type_register_static()
- * The type system will perform a deep copy of this structure, so its memory
- * does not need to be persistent across invocation of
+ * The initialized structure is passed to the g_param_type_register_static() 
+ * The type system will perform a deep copy of this structure, so its memory 
+ * does not need to be persistent across invocation of 
  * g_param_type_register_static().
  */
 struct _GParamSpecTypeInfo
@@ -22972,20 +22972,20 @@ G_BEGIN_DECLS
 /**
  * G_CLOSURE_NEEDS_MARSHAL:
  * @closure: a #GClosure
- *
+ * 
  * Check if the closure still needs a marshaller. See g_closure_set_marshal().
  *
- * Returns: %TRUE if a #GClosureMarshal marshaller has not yet been set on
+ * Returns: %TRUE if a #GClosureMarshal marshaller has not yet been set on 
  * @closure.
  */
 #define	G_CLOSURE_NEEDS_MARSHAL(closure) (((GClosure*) (closure))->marshal == NULL)
 /**
  * G_CLOSURE_N_NOTIFIERS:
  * @cl: a #GClosure
- *
- * Get the total number of notifiers connected with the closure @cl.
- * The count includes the meta marshaller, the finalize and invalidate notifiers
- * and the marshal guards. Note that each guard counts as two notifiers.
+ * 
+ * Get the total number of notifiers connected with the closure @cl. 
+ * The count includes the meta marshaller, the finalize and invalidate notifiers 
+ * and the marshal guards. Note that each guard counts as two notifiers. 
  * See g_closure_set_meta_marshal(), g_closure_add_finalize_notifier(),
  * g_closure_add_invalidate_notifier() and g_closure_add_marshal_guards().
  *
@@ -22996,7 +22996,7 @@ G_BEGIN_DECLS
 /**
  * G_CCLOSURE_SWAP_DATA:
  * @cclosure: a #GCClosure
- *
+ * 
  * Checks whether the user data of the #GCClosure should be passed as the
  * first parameter to the callback. See g_cclosure_new_swap().
  *
@@ -23006,7 +23006,7 @@ G_BEGIN_DECLS
 /**
  * G_CALLBACK:
  * @f: a function pointer.
- *
+ * 
  * Cast a function pointer to a #GCallback.
  */
 #define	G_CALLBACK(f)			 ((GCallback) (f))
@@ -23018,19 +23018,19 @@ typedef struct _GClosureNotifyData	 GClosureNotifyData;
 
 /**
  * GCallback:
- *
- * The type used for callback functions in structure definitions and function
- * signatures. This doesn't mean that all callback functions must take no
- * parameters and return void. The required signature of a callback function
- * is determined by the context in which is used (e.g. the signal to which it
- * is connected). Use G_CALLBACK() to cast the callback function to a #GCallback.
+ * 
+ * The type used for callback functions in structure definitions and function 
+ * signatures. This doesn't mean that all callback functions must take no 
+ * parameters and return void. The required signature of a callback function 
+ * is determined by the context in which is used (e.g. the signal to which it 
+ * is connected). Use G_CALLBACK() to cast the callback function to a #GCallback. 
  */
 typedef void  (*GCallback)              (void);
 /**
  * GClosureNotify:
  * @data: data specified when registering the notification callback
  * @closure: the #GClosure on which the notification is emitted
- *
+ * 
  * The type used for the various notification callbacks which can be registered
  * on closures.
  */
@@ -23051,7 +23051,7 @@ typedef void  (*GClosureNotify)		(gpointer	 data,
  * @marshal_data: (nullable): additional data specified when
  *  registering the marshaller, see g_closure_set_marshal() and
  *  g_closure_set_meta_marshal()
- *
+ * 
  * The type used for marshaller functions.
  */
 typedef void  (*GClosureMarshal)	(GClosure	*closure,
@@ -23093,7 +23093,7 @@ typedef void (* GVaClosureMarshal) (GClosure *closure,
  * GCClosure:
  * @closure: the #GClosure
  * @callback: the callback function
- *
+ * 
  * A #GCClosure is a specialization of #GClosure for C function callbacks.
  */
 typedef struct _GCClosure		 GCClosure;
@@ -23107,11 +23107,11 @@ struct _GClosureNotifyData
 };
 /**
  * GClosure:
- * @in_marshal: Indicates whether the closure is currently being invoked with
+ * @in_marshal: Indicates whether the closure is currently being invoked with 
  *  g_closure_invoke()
- * @is_invalid: Indicates whether the closure has been invalidated by
+ * @is_invalid: Indicates whether the closure has been invalidated by 
  *  g_closure_invalidate()
- *
+ * 
  * A #GClosure represents a callback supplied by the programmer.
  */
 struct _GClosure
@@ -23722,7 +23722,7 @@ typedef struct _GSignalQuery		 GSignalQuery;
 typedef struct _GSignalInvocationHint	 GSignalInvocationHint;
 /**
  * GSignalCMarshaller:
- *
+ * 
  * This is the signature of marshaller functions, required to marshall
  * arrays of parameter values to signal emissions into C language callback
  * invocations. It is merely an alias to #GClosureMarshal since the #GClosure
@@ -23732,7 +23732,7 @@ typedef struct _GSignalInvocationHint	 GSignalInvocationHint;
 typedef GClosureMarshal			 GSignalCMarshaller;
 /**
  * GSignalCVaMarshaller:
- *
+ * 
  * This is the signature of va_list marshaller functions, an optional
  * marshaller that can be used in some situations to avoid
  * marshalling the signal argument into GValues.
@@ -23746,14 +23746,14 @@ typedef GVaClosureMarshal		 GSignalCVaMarshaller;
  * @param_values: (array length=n_param_values): the instance on which
  *  the signal was emitted, followed by the parameters of the emission.
  * @data: user data associated with the hook.
- *
- * A simple function pointer to get invoked when the signal is emitted. This
- * allows you to tie a hook to the signal type, so that it will trap all
+ * 
+ * A simple function pointer to get invoked when the signal is emitted. This 
+ * allows you to tie a hook to the signal type, so that it will trap all 
  * emissions of that signal, from any object.
- *
+ * 
  * You may not attach these to signals created with the #G_SIGNAL_NO_HOOKS flag.
- *
- * Returns: whether it wants to stay connected. If it returns %FALSE, the signal
+ * 
+ * Returns: whether it wants to stay connected. If it returns %FALSE, the signal 
  *  hook is disconnected (and destroyed).
  */
 typedef gboolean (*GSignalEmissionHook) (GSignalInvocationHint *ihint,
@@ -23767,14 +23767,14 @@ typedef gboolean (*GSignalEmissionHook) (GSignalInvocationHint *ihint,
  *  is the return value of the current signal emission.
  * @handler_return: A #GValue holding the return value of the signal handler.
  * @data: Callback data that was specified when creating the signal.
- *
+ * 
  * The signal accumulator is a special callback function that can be used
  * to collect return values of the various callbacks that are called
  * during a signal emission. The signal accumulator is specified at signal
  * creation time, if it is left %NULL, no accumulation of callback return
  * values is performed. The return value of signal emissions is then the
  * value returned by the last callback.
- *
+ * 
  * Returns: The accumulator function returns whether the signal emission
  *  should be aborted. Returning %TRUE will continue with
  *  the signal emission. Returning %FALSE will abort the current emission.
@@ -23803,7 +23803,7 @@ typedef gboolean (*GSignalAccumulator)	(GSignalInvocationHint *ihint,
  *  objects from user code via g_signal_emit() and friends, without
  *  the need of being embedded into extra code that performs pre or
  *  post emission adjustments on the object. They can also be thought
- *  of as object methods which can be called generically by
+ *  of as object methods which can be called generically by 
  *  third-party code.
  * @G_SIGNAL_NO_HOOKS: No emissions hooks are supported for this signal.
  * @G_SIGNAL_MUST_COLLECT: Varargs signal emission will always collect the
@@ -23835,18 +23835,18 @@ typedef enum
 } GSignalFlags;
 /**
  * G_SIGNAL_FLAGS_MASK:
- *
+ * 
  * A mask for all #GSignalFlags bits.
  */
 #define G_SIGNAL_FLAGS_MASK  0x1ff
 /**
  * GConnectFlags:
- * @G_CONNECT_AFTER: whether the handler should be called before or after the
+ * @G_CONNECT_AFTER: whether the handler should be called before or after the 
  *  default handler of the signal.
  * @G_CONNECT_SWAPPED: whether the instance and data should be swapped when
  *  calling the handler; see g_signal_connect_swapped() for an example.
- *
- * The connection flags are used to specify the behaviour of a signal's
+ * 
+ * The connection flags are used to specify the behaviour of a signal's 
  * connection.
  */
 typedef enum
@@ -23862,7 +23862,7 @@ typedef enum
  * @G_SIGNAL_MATCH_FUNC: The C closure callback must be the same.
  * @G_SIGNAL_MATCH_DATA: The closure data must be the same.
  * @G_SIGNAL_MATCH_UNBLOCKED: Only unblocked signals may be matched.
- *
+ * 
  * The match types specify what g_signal_handlers_block_matched(),
  * g_signal_handlers_unblock_matched() and g_signal_handlers_disconnect_matched()
  * match signals by.
@@ -23878,17 +23878,17 @@ typedef enum
 } GSignalMatchType;
 /**
  * G_SIGNAL_MATCH_MASK:
- *
+ * 
  * A mask for all #GSignalMatchType bits.
  */
 #define G_SIGNAL_MATCH_MASK  0x3f
 /**
  * G_SIGNAL_TYPE_STATIC_SCOPE:
- *
- * This macro flags signal argument types for which the signal system may
+ * 
+ * This macro flags signal argument types for which the signal system may 
  * assume that instances thereof remain persistent across all signal emissions
  * they are used in. This is only useful for non ref-counted, value-copy types.
- *
+ * 
  * To flag a signal argument in this way, add `| G_SIGNAL_TYPE_STATIC_SCOPE`
  * to the corresponding argument of g_signal_new().
  * |[
@@ -23915,7 +23915,7 @@ typedef enum
  *  %G_SIGNAL_RUN_LAST or %G_SIGNAL_RUN_CLEANUP and %G_SIGNAL_ACCUMULATOR_FIRST_RUN.
  *  %G_SIGNAL_ACCUMULATOR_FIRST_RUN is only set for the first run of the accumulator
  *  function for a signal emission.
- *
+ * 
  * The #GSignalInvocationHint structure is used to pass on additional information
  * to callbacks during a signal emission.
  */
@@ -23941,7 +23941,7 @@ struct _GSignalInvocationHint
  *  [param_types param_names,]
  *  gpointer     data2);
  *  ]|
- *
+ * 
  * A structure holding in-depth information for a specific signal. It is
  * filled in by the g_signal_query() function.
  */
@@ -24179,14 +24179,14 @@ void   g_signal_chain_from_overridden_handler (gpointer           instance,
  * @detailed_signal: a string of the form "signal-name::detail".
  * @c_handler: the #GCallback to connect.
  * @data: data to pass to @c_handler calls.
- *
+ * 
  * Connects a #GCallback function to a signal for a particular object.
- *
+ * 
  * The handler will be called before the default handler of the signal.
  *
  * See [memory management of signal handlers][signal-memory-management] for
  * details on how to handle the return value and memory management of @data.
- *
+ * 
  * Returns: the handler ID, of type #gulong (always greater than 0 for successful connections)
  */
 #define g_signal_connect(instance, detailed_signal, c_handler, data) \
@@ -24197,11 +24197,11 @@ void   g_signal_chain_from_overridden_handler (gpointer           instance,
  * @detailed_signal: a string of the form "signal-name::detail".
  * @c_handler: the #GCallback to connect.
  * @data: data to pass to @c_handler calls.
- *
+ * 
  * Connects a #GCallback function to a signal for a particular object.
- *
+ * 
  * The handler will be called after the default handler of the signal.
- *
+ * 
  * Returns: the handler ID, of type #gulong (always greater than 0 for successful connections)
  */
 #define g_signal_connect_after(instance, detailed_signal, c_handler, data) \
@@ -24212,10 +24212,10 @@ void   g_signal_chain_from_overridden_handler (gpointer           instance,
  * @detailed_signal: a string of the form "signal-name::detail".
  * @c_handler: the #GCallback to connect.
  * @data: data to pass to @c_handler calls.
- *
+ * 
  * Connects a #GCallback function to a signal for a particular object.
- *
- * The instance on which the signal is emitted and @data will be swapped when
+ * 
+ * The instance on which the signal is emitted and @data will be swapped when 
  * calling the handler. This is useful when calling pre-existing functions to
  * operate purely on the @data, rather than the @instance: swapping the
  * parameters avoids the need to write a wrapper function.
@@ -24239,7 +24239,7 @@ void   g_signal_chain_from_overridden_handler (gpointer           instance,
  * g_signal_connect (button, "clicked",
  *                   (GCallback) button_clicked_cb, other_widget);
  * ]|
- *
+ * 
  * Returns: the handler ID, of type #gulong (always greater than 0 for successful connections)
  */
 #define g_signal_connect_swapped(instance, detailed_signal, c_handler, data) \
@@ -24249,9 +24249,9 @@ void   g_signal_chain_from_overridden_handler (gpointer           instance,
  * @instance: The instance to remove handlers from.
  * @func: The C closure callback of the handlers (useless for non-C closures).
  * @data: The closure data of the handlers' closures.
- *
+ * 
  * Disconnects all handlers on an instance that match @func and @data.
- *
+ * 
  * Returns: The number of handlers that matched.
  */
 #define	g_signal_handlers_disconnect_by_func(instance, func, data)						\
@@ -24278,9 +24278,9 @@ void   g_signal_chain_from_overridden_handler (gpointer           instance,
  * @instance: The instance to block handlers from.
  * @func: The C closure callback of the handlers (useless for non-C closures).
  * @data: The closure data of the handlers' closures.
- *
+ * 
  * Blocks all handlers on an instance that match @func and @data.
- *
+ * 
  * Returns: The number of handlers that matched.
  */
 #define	g_signal_handlers_block_by_func(instance, func, data)							\
@@ -24292,9 +24292,9 @@ void   g_signal_chain_from_overridden_handler (gpointer           instance,
  * @instance: The instance to unblock handlers from.
  * @func: The C closure callback of the handlers (useless for non-C closures).
  * @data: The closure data of the handlers' closures.
- *
+ * 
  * Unblocks all handlers on an instance that match @func and @data.
- *
+ * 
  * Returns: The number of handlers that matched.
  */
 #define	g_signal_handlers_unblock_by_func(instance, func, data)							\
@@ -24849,16 +24849,16 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_OBJECT:
  * @type: Type id to check
- *
+ * 
  * Check if the passed in type id is a %G_TYPE_OBJECT or derived from it.
- *
+ * 
  * Returns: %FALSE or %TRUE, indicating whether @type is a %G_TYPE_OBJECT.
  */
 #define G_TYPE_IS_OBJECT(type)      (G_TYPE_FUNDAMENTAL (type) == G_TYPE_OBJECT)
 /**
  * G_OBJECT:
  * @object: Object which is subject to casting.
- *
+ * 
  * Casts a #GObject or derived pointer into a (GObject*) pointer.
  * Depending on the current debugging level, this function may invoke
  * certain runtime checks to identify invalid casts.
@@ -24867,14 +24867,14 @@ G_BEGIN_DECLS
 /**
  * G_OBJECT_CLASS:
  * @class: a valid #GObjectClass
- *
+ * 
  * Casts a derived #GObjectClass structure into a #GObjectClass structure.
  */
 #define G_OBJECT_CLASS(class)       (G_TYPE_CHECK_CLASS_CAST ((class), G_TYPE_OBJECT, GObjectClass))
 /**
  * G_IS_OBJECT:
  * @object: Instance to check for being a %G_TYPE_OBJECT.
- *
+ * 
  * Checks whether a valid #GTypeInstance pointer is of type %G_TYPE_OBJECT.
  */
 #if GLIB_VERSION_MAX_ALLOWED >= GLIB_VERSION_2_42
@@ -24885,7 +24885,7 @@ G_BEGIN_DECLS
 /**
  * G_IS_OBJECT_CLASS:
  * @class: a #GObjectClass
- *
+ * 
  * Checks whether @class "is a" valid #GObjectClass structure of type
  * %G_TYPE_OBJECT or derived.
  */
@@ -24893,7 +24893,7 @@ G_BEGIN_DECLS
 /**
  * G_OBJECT_GET_CLASS:
  * @object: a #GObject instance.
- *
+ * 
  * Get the class structure associated to a #GObject instance.
  *
  * Returns: pointer to object class structure.
@@ -24902,47 +24902,47 @@ G_BEGIN_DECLS
 /**
  * G_OBJECT_TYPE:
  * @object: Object to return the type id for.
- *
+ * 
  * Get the type id of an object.
- *
+ * 
  * Returns: Type id of @object.
  */
 #define G_OBJECT_TYPE(object)       (G_TYPE_FROM_INSTANCE (object))
 /**
  * G_OBJECT_TYPE_NAME:
  * @object: Object to return the type name for.
- *
+ * 
  * Get the name of an object's type.
- *
- * Returns: Type name of @object. The string is owned by the type system and
+ * 
+ * Returns: Type name of @object. The string is owned by the type system and 
  *  should not be freed.
  */
 #define G_OBJECT_TYPE_NAME(object)  (g_type_name (G_OBJECT_TYPE (object)))
 /**
  * G_OBJECT_CLASS_TYPE:
  * @class: a valid #GObjectClass
- *
+ * 
  * Get the type id of a class structure.
- *
+ * 
  * Returns: Type id of @class.
  */
 #define G_OBJECT_CLASS_TYPE(class)  (G_TYPE_FROM_CLASS (class))
 /**
  * G_OBJECT_CLASS_NAME:
  * @class: a valid #GObjectClass
- *
+ * 
  * Return the name of a class structure's type.
- *
- * Returns: Type name of @class. The string is owned by the type system and
+ * 
+ * Returns: Type name of @class. The string is owned by the type system and 
  *  should not be freed.
  */
 #define G_OBJECT_CLASS_NAME(class)  (g_type_name (G_OBJECT_CLASS_TYPE (class)))
 /**
  * G_VALUE_HOLDS_OBJECT:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values derived from type %G_TYPE_OBJECT.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_OBJECT(value) (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_OBJECT))
@@ -24950,15 +24950,15 @@ G_BEGIN_DECLS
 /* --- type macros --- */
 /**
  * G_TYPE_INITIALLY_UNOWNED:
- *
+ * 
  * The type for #GInitiallyUnowned.
  */
 #define G_TYPE_INITIALLY_UNOWNED	      (g_initially_unowned_get_type())
 /**
  * G_INITIALLY_UNOWNED:
  * @object: Object which is subject to casting.
- *
- * Casts a #GInitiallyUnowned or derived pointer into a (GInitiallyUnowned*)
+ * 
+ * Casts a #GInitiallyUnowned or derived pointer into a (GInitiallyUnowned*) 
  * pointer. Depending on the current debugging level, this function may invoke
  * certain runtime checks to identify invalid casts.
  */
@@ -24966,7 +24966,7 @@ G_BEGIN_DECLS
 /**
  * G_INITIALLY_UNOWNED_CLASS:
  * @class: a valid #GInitiallyUnownedClass
- *
+ * 
  * Casts a derived #GInitiallyUnownedClass structure into a
  * #GInitiallyUnownedClass structure.
  */
@@ -24974,14 +24974,14 @@ G_BEGIN_DECLS
 /**
  * G_IS_INITIALLY_UNOWNED:
  * @object: Instance to check for being a %G_TYPE_INITIALLY_UNOWNED.
- *
+ * 
  * Checks whether a valid #GTypeInstance pointer is of type %G_TYPE_INITIALLY_UNOWNED.
  */
 #define G_IS_INITIALLY_UNOWNED(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), G_TYPE_INITIALLY_UNOWNED))
 /**
  * G_IS_INITIALLY_UNOWNED_CLASS:
  * @class: a #GInitiallyUnownedClass
- *
+ * 
  * Checks whether @class "is a" valid #GInitiallyUnownedClass structure of type
  * %G_TYPE_INITIALLY_UNOWNED or derived.
  */
@@ -24989,7 +24989,7 @@ G_BEGIN_DECLS
 /**
  * G_INITIALLY_UNOWNED_GET_CLASS:
  * @object: a #GInitiallyUnowned instance.
- *
+ * 
  * Get the class structure associated to a #GInitiallyUnowned instance.
  *
  * Returns: pointer to object class structure.
@@ -25011,8 +25011,8 @@ typedef struct _GObjectConstructParam    GObjectConstructParam;
  *  g_object_class_install_property().
  * @value: a #GValue to return the property value in
  * @pspec: the #GParamSpec describing the property
- *
- * The type of the @get_property function of #GObjectClass.
+ * 
+ * The type of the @get_property function of #GObjectClass. 
  */
 typedef void (*GObjectGetPropertyFunc)  (GObject      *object,
                                          guint         property_id,
@@ -25025,8 +25025,8 @@ typedef void (*GObjectGetPropertyFunc)  (GObject      *object,
  *  g_object_class_install_property().
  * @value: the new value for the property
  * @pspec: the #GParamSpec describing the property
- *
- * The type of the @set_property function of #GObjectClass.
+ * 
+ * The type of the @set_property function of #GObjectClass. 
  */
 typedef void (*GObjectSetPropertyFunc)  (GObject      *object,
                                          guint         property_id,
@@ -25035,7 +25035,7 @@ typedef void (*GObjectSetPropertyFunc)  (GObject      *object,
 /**
  * GObjectFinalizeFunc:
  * @object: the #GObject being finalized
- *
+ * 
  * The type of the @finalize function of #GObjectClass.
  */
 typedef void (*GObjectFinalizeFunc)     (GObject      *object);
@@ -25043,24 +25043,24 @@ typedef void (*GObjectFinalizeFunc)     (GObject      *object);
  * GWeakNotify:
  * @data: data that was provided when the weak reference was established
  * @where_the_object_was: the object being disposed
- *
+ * 
  * A #GWeakNotify function can be added to an object as a callback that gets
  * triggered when the object is finalized. Since the object is already being
- * disposed when the #GWeakNotify is called, there's not much you could do
- * with the object, apart from e.g. using its address as hash-index or the like.
+ * disposed when the #GWeakNotify is called, there's not much you could do 
+ * with the object, apart from e.g. using its address as hash-index or the like. 
  */
 typedef void (*GWeakNotify)		(gpointer      data,
 					 GObject      *where_the_object_was);
 /**
  * GObject:
- *
- * All the fields in the GObject structure are private
+ * 
+ * All the fields in the GObject structure are private 
  * to the #GObject implementation and should never be accessed directly.
  */
 struct  _GObject
 {
   GTypeInstance  g_type_instance;
-
+  
   /*< private >*/
   guint          ref_count;  /* (atomic) */
   GData         *qdata;
@@ -25068,10 +25068,10 @@ struct  _GObject
 /**
  * GObjectClass:
  * @g_type_class: the parent class
- * @constructor: the @constructor function is called by g_object_new () to
+ * @constructor: the @constructor function is called by g_object_new () to 
  *  complete the object initialization after all the construction properties are
  *  set. The first thing a @constructor implementation must do is chain up to the
- *  @constructor of the parent class. Overriding @constructor should be rarely
+ *  @constructor of the parent class. Overriding @constructor should be rarely 
  *  needed, e.g. to handle construct properties, or to implement singletons.
  * @set_property: the generic setter for all properties of this type. Should be
  *  overridden for every type with properties. If implementations of
@@ -25080,16 +25080,16 @@ struct  _GObject
  *  emitted explicitly, the type system will not emit it a second time.
  * @get_property: the generic getter for all properties of this type. Should be
  *  overridden for every type with properties.
- * @dispose: the @dispose function is supposed to drop all references to other
- *  objects, but keep the instance otherwise intact, so that client method
- *  invocations still work. It may be run multiple times (due to reference
- *  loops). Before returning, @dispose should chain up to the @dispose method
+ * @dispose: the @dispose function is supposed to drop all references to other 
+ *  objects, but keep the instance otherwise intact, so that client method 
+ *  invocations still work. It may be run multiple times (due to reference 
+ *  loops). Before returning, @dispose should chain up to the @dispose method 
  *  of the parent class.
- * @finalize: instance finalization function, should finish the finalization of
- *  the instance begun in @dispose and chain up to the @finalize method of the
+ * @finalize: instance finalization function, should finish the finalization of 
+ *  the instance begun in @dispose and chain up to the @finalize method of the 
  *  parent class.
  * @dispatch_properties_changed: emits property change notification for a bunch
- *  of properties. Overriding @dispatch_properties_changed should be rarely
+ *  of properties. Overriding @dispatch_properties_changed should be rarely 
  *  needed.
  * @notify: the class closure for the notify signal
  * @constructed: the @constructed function is called by g_object_new() as the
@@ -25099,20 +25099,20 @@ struct  _GObject
  *  after construction properties have been set.  @constructed implementors
  *  should chain up to the @constructed call of their parent class to allow it
  *  to complete its initialisation.
- *
+ * 
  * The class structure for the GObject type.
- *
+ * 
  * |[<!-- language="C" -->
  * // Example of implementing a singleton using a constructor.
  * static MySingleton *the_singleton = NULL;
- *
+ * 
  * static GObject*
  * my_singleton_constructor (GType                  type,
  *                           guint                  n_construct_params,
  *                           GObjectConstructParam *construct_params)
  * {
  *   GObject *object;
- *
+ *   
  *   if (!the_singleton)
  *     {
  *       object = G_OBJECT_CLASS (parent_class)->constructor (type,
@@ -25122,7 +25122,7 @@ struct  _GObject
  *     }
  *   else
  *     object = g_object_ref (G_OBJECT (the_singleton));
- *
+ * 
  *   return object;
  * }
  * ]|
@@ -25171,8 +25171,8 @@ struct  _GObjectClass
  * GObjectConstructParam:
  * @pspec: the #GParamSpec of the construct parameter
  * @value: the value to set the parameter to
- *
- * The GObjectConstructParam struct is an auxiliary
+ * 
+ * The GObjectConstructParam struct is an auxiliary 
  * structure used to hand #GParamSpec/#GValue pairs to the @constructor of
  * a #GObjectClass.
  */
@@ -25184,14 +25184,14 @@ struct _GObjectConstructParam
 
 /**
  * GInitiallyUnowned:
- *
- * All the fields in the GInitiallyUnowned structure
- * are private to the #GInitiallyUnowned implementation and should never be
+ * 
+ * All the fields in the GInitiallyUnowned structure 
+ * are private to the #GInitiallyUnowned implementation and should never be 
  * accessed directly.
  */
 /**
  * GInitiallyUnownedClass:
- *
+ * 
  * The class structure for the GInitiallyUnowned type.
  */
 
@@ -25322,10 +25322,10 @@ void	    g_object_weak_unref		      (GObject	      *object,
 					       GWeakNotify     notify,
 					       gpointer	       data);
 GLIB_AVAILABLE_IN_ALL
-void        g_object_add_weak_pointer         (GObject        *object,
+void        g_object_add_weak_pointer         (GObject        *object, 
                                                gpointer       *weak_pointer_location);
 GLIB_AVAILABLE_IN_ALL
-void        g_object_remove_weak_pointer      (GObject        *object,
+void        g_object_remove_weak_pointer      (GObject        *object, 
                                                gpointer       *weak_pointer_location);
 
 #if defined(glib_typeof) && GLIB_VERSION_MAX_ALLOWED >= GLIB_VERSION_2_56 && (!defined(glib_typeof_2_68) || GLIB_VERSION_MIN_REQUIRED >= GLIB_VERSION_2_68)
@@ -25342,7 +25342,7 @@ void        g_object_remove_weak_pointer      (GObject        *object,
  *  last reference to the object. %FALSE if the toggle
  *  reference was the last reference and there are now other
  *  references.
- *
+ * 
  * A callback function used for notification when the state
  * of a toggle reference changes. See g_object_add_toggle_ref().
  */
@@ -25481,8 +25481,8 @@ G_STMT_START { \
  * @object: the #GObject on which set_property() or get_property() was called
  * @property_id: the numeric id of the property
  * @pspec: the #GParamSpec of the property
- *
- * This macro should be used to emit a standard warning about unexpected
+ * 
+ * This macro should be used to emit a standard warning about unexpected 
  * properties in set_property() and get_property() implementations.
  */
 #define G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec) \
@@ -25885,7 +25885,7 @@ G_BEGIN_DECLS
 /**
  * G_TYPE_IS_ENUM:
  * @type: a #GType ID.
- *
+ * 
  * Checks whether @type "is a" %G_TYPE_ENUM.
  *
  * Returns: %TRUE if @type "is a" %G_TYPE_ENUM.
@@ -25894,14 +25894,14 @@ G_BEGIN_DECLS
 /**
  * G_ENUM_CLASS:
  * @class: a valid #GEnumClass
- *
+ * 
  * Casts a derived #GEnumClass structure into a #GEnumClass structure.
  */
 #define G_ENUM_CLASS(class)	       (G_TYPE_CHECK_CLASS_CAST ((class), G_TYPE_ENUM, GEnumClass))
 /**
  * G_IS_ENUM_CLASS:
  * @class: a #GEnumClass
- *
+ * 
  * Checks whether @class "is a" valid #GEnumClass structure of type %G_TYPE_ENUM
  * or derived.
  */
@@ -25909,7 +25909,7 @@ G_BEGIN_DECLS
 /**
  * G_ENUM_CLASS_TYPE:
  * @class: a #GEnumClass
- *
+ * 
  * Get the type identifier from a given #GEnumClass structure.
  *
  * Returns: the #GType
@@ -25918,7 +25918,7 @@ G_BEGIN_DECLS
 /**
  * G_ENUM_CLASS_TYPE_NAME:
  * @class: a #GEnumClass
- *
+ * 
  * Get the static type name from a given #GEnumClass structure.
  *
  * Returns: the type name.
@@ -25930,7 +25930,7 @@ G_BEGIN_DECLS
  * G_TYPE_IS_FLAGS:
  * @type: a #GType ID.
  *
- * Checks whether @type "is a" %G_TYPE_FLAGS.
+ * Checks whether @type "is a" %G_TYPE_FLAGS. 
  *
  * Returns: %TRUE if @type "is a" %G_TYPE_FLAGS.
  */
@@ -25938,14 +25938,14 @@ G_BEGIN_DECLS
 /**
  * G_FLAGS_CLASS:
  * @class: a valid #GFlagsClass
- *
+ * 
  * Casts a derived #GFlagsClass structure into a #GFlagsClass structure.
  */
 #define G_FLAGS_CLASS(class)	       (G_TYPE_CHECK_CLASS_CAST ((class), G_TYPE_FLAGS, GFlagsClass))
 /**
  * G_IS_FLAGS_CLASS:
  * @class: a #GFlagsClass
- *
+ * 
  * Checks whether @class "is a" valid #GFlagsClass structure of type %G_TYPE_FLAGS
  * or derived.
  */
@@ -25953,7 +25953,7 @@ G_BEGIN_DECLS
 /**
  * G_FLAGS_CLASS_TYPE:
  * @class: a #GFlagsClass
- *
+ * 
  * Get the type identifier from a given #GFlagsClass structure.
  *
  * Returns: the #GType
@@ -25962,7 +25962,7 @@ G_BEGIN_DECLS
 /**
  * G_FLAGS_CLASS_TYPE_NAME:
  * @class: a #GFlagsClass
- *
+ * 
  * Get the static type name from a given #GFlagsClass structure.
  *
  * Returns: the type name.
@@ -25973,18 +25973,18 @@ G_BEGIN_DECLS
 /**
  * G_VALUE_HOLDS_ENUM:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values derived from type %G_TYPE_ENUM.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_ENUM(value)      (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_ENUM))
 /**
  * G_VALUE_HOLDS_FLAGS:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values derived from type %G_TYPE_FLAGS.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_FLAGS(value)     (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_FLAGS))
@@ -26002,17 +26002,17 @@ typedef struct _GFlagsValue GFlagsValue;
  * @minimum: the smallest possible value.
  * @maximum: the largest possible value.
  * @n_values: the number of possible values.
- * @values: an array of #GEnumValue structs describing the
+ * @values: an array of #GEnumValue structs describing the 
  *  individual values.
- *
- * The class of an enumeration type holds information about its
+ * 
+ * The class of an enumeration type holds information about its 
  * possible values.
  */
 struct	_GEnumClass
 {
   GTypeClass  g_type_class;
 
-  /*< public >*/
+  /*< public >*/  
   gint	      minimum;
   gint	      maximum;
   guint	      n_values;
@@ -26023,17 +26023,17 @@ struct	_GEnumClass
  * @g_type_class: the parent class
  * @mask: a mask covering all possible values.
  * @n_values: the number of possible values.
- * @values: an array of #GFlagsValue structs describing the
+ * @values: an array of #GFlagsValue structs describing the 
  *  individual values.
- *
- * The class of a flags type holds information about its
+ * 
+ * The class of a flags type holds information about its 
  * possible values.
  */
 struct	_GFlagsClass
 {
   GTypeClass   g_type_class;
-
-  /*< public >*/
+  
+  /*< public >*/  
   guint	       mask;
   guint	       n_values;
   GFlagsValue *values;
@@ -26043,7 +26043,7 @@ struct	_GFlagsClass
  * @value: the enum value
  * @value_name: the name of the value
  * @value_nick: the nickname of the value
- *
+ * 
  * A structure which contains a single enum value, its name, and its
  * nickname.
  */
@@ -26058,7 +26058,7 @@ struct _GEnumValue
  * @value: the flags value
  * @value_name: the name of the value
  * @value_nick: the nickname of the value
- *
+ * 
  * A structure which contains a single flags value, its name, and its
  * nickname.
  */
@@ -26188,175 +26188,175 @@ G_BEGIN_DECLS
 /* --- type macros --- */
 /**
  * G_TYPE_PARAM_CHAR:
- *
+ * 
  * The #GType of #GParamSpecChar.
  */
 #define	G_TYPE_PARAM_CHAR		   (g_param_spec_types[0])
 /**
  * G_IS_PARAM_SPEC_CHAR:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_CHAR.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_CHAR(pspec)        (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_CHAR))
 /**
  * G_PARAM_SPEC_CHAR:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecChar.
  */
 #define G_PARAM_SPEC_CHAR(pspec)           (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_CHAR, GParamSpecChar))
 
 /**
  * G_TYPE_PARAM_UCHAR:
- *
+ * 
  * The #GType of #GParamSpecUChar.
  */
 #define	G_TYPE_PARAM_UCHAR		   (g_param_spec_types[1])
 /**
  * G_IS_PARAM_SPEC_UCHAR:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_UCHAR.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_UCHAR(pspec)       (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_UCHAR))
 /**
  * G_PARAM_SPEC_UCHAR:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecUChar.
  */
 #define G_PARAM_SPEC_UCHAR(pspec)          (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_UCHAR, GParamSpecUChar))
 
 /**
  * G_TYPE_PARAM_BOOLEAN:
- *
+ * 
  * The #GType of #GParamSpecBoolean.
  */
 #define	G_TYPE_PARAM_BOOLEAN		   (g_param_spec_types[2])
 /**
  * G_IS_PARAM_SPEC_BOOLEAN:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_BOOLEAN.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_BOOLEAN(pspec)     (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_BOOLEAN))
 /**
  * G_PARAM_SPEC_BOOLEAN:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecBoolean.
  */
 #define G_PARAM_SPEC_BOOLEAN(pspec)        (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_BOOLEAN, GParamSpecBoolean))
 
 /**
  * G_TYPE_PARAM_INT:
- *
+ * 
  * The #GType of #GParamSpecInt.
  */
 #define	G_TYPE_PARAM_INT		   (g_param_spec_types[3])
 /**
  * G_IS_PARAM_SPEC_INT:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_INT.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_INT(pspec)         (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_INT))
 /**
  * G_PARAM_SPEC_INT:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecInt.
  */
 #define G_PARAM_SPEC_INT(pspec)            (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_INT, GParamSpecInt))
 
 /**
  * G_TYPE_PARAM_UINT:
- *
+ * 
  * The #GType of #GParamSpecUInt.
  */
 #define	G_TYPE_PARAM_UINT		   (g_param_spec_types[4])
 /**
  * G_IS_PARAM_SPEC_UINT:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_UINT.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_UINT(pspec)        (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_UINT))
 /**
  * G_PARAM_SPEC_UINT:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecUInt.
  */
 #define G_PARAM_SPEC_UINT(pspec)           (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_UINT, GParamSpecUInt))
 
 /**
  * G_TYPE_PARAM_LONG:
- *
+ * 
  * The #GType of #GParamSpecLong.
  */
 #define	G_TYPE_PARAM_LONG		   (g_param_spec_types[5])
 /**
  * G_IS_PARAM_SPEC_LONG:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_LONG.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_LONG(pspec)        (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_LONG))
 /**
  * G_PARAM_SPEC_LONG:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecLong.
  */
 #define G_PARAM_SPEC_LONG(pspec)           (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_LONG, GParamSpecLong))
 
 /**
  * G_TYPE_PARAM_ULONG:
- *
+ * 
  * The #GType of #GParamSpecULong.
  */
 #define	G_TYPE_PARAM_ULONG		   (g_param_spec_types[6])
 /**
  * G_IS_PARAM_SPEC_ULONG:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_ULONG.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_ULONG(pspec)       (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_ULONG))
 /**
  * G_PARAM_SPEC_ULONG:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecULong.
  */
 #define G_PARAM_SPEC_ULONG(pspec)          (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_ULONG, GParamSpecULong))
 
 /**
  * G_TYPE_PARAM_INT64:
- *
+ * 
  * The #GType of #GParamSpecInt64.
  */
 #define	G_TYPE_PARAM_INT64		   (g_param_spec_types[7])
 /**
  * G_IS_PARAM_SPEC_INT64:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_INT64.
  *
  * Returns: %TRUE on success.
@@ -26365,244 +26365,244 @@ G_BEGIN_DECLS
 /**
  * G_PARAM_SPEC_INT64:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecInt64.
  */
 #define G_PARAM_SPEC_INT64(pspec)          (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_INT64, GParamSpecInt64))
 
 /**
  * G_TYPE_PARAM_UINT64:
- *
+ * 
  * The #GType of #GParamSpecUInt64.
  */
 #define	G_TYPE_PARAM_UINT64		   (g_param_spec_types[8])
 /**
  * G_IS_PARAM_SPEC_UINT64:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_UINT64.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_UINT64(pspec)      (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_UINT64))
 /**
  * G_PARAM_SPEC_UINT64:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecUInt64.
  */
 #define G_PARAM_SPEC_UINT64(pspec)         (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_UINT64, GParamSpecUInt64))
 
 /**
  * G_TYPE_PARAM_UNICHAR:
- *
+ * 
  * The #GType of #GParamSpecUnichar.
  */
 #define	G_TYPE_PARAM_UNICHAR		   (g_param_spec_types[9])
 /**
  * G_PARAM_SPEC_UNICHAR:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecUnichar.
  */
 #define G_PARAM_SPEC_UNICHAR(pspec)        (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_UNICHAR, GParamSpecUnichar))
 /**
  * G_IS_PARAM_SPEC_UNICHAR:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_UNICHAR.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_UNICHAR(pspec)     (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_UNICHAR))
 
 /**
  * G_TYPE_PARAM_ENUM:
- *
+ * 
  * The #GType of #GParamSpecEnum.
  */
 #define	G_TYPE_PARAM_ENUM		   (g_param_spec_types[10])
 /**
  * G_IS_PARAM_SPEC_ENUM:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_ENUM.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_ENUM(pspec)        (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_ENUM))
 /**
  * G_PARAM_SPEC_ENUM:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecEnum.
  */
 #define G_PARAM_SPEC_ENUM(pspec)           (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_ENUM, GParamSpecEnum))
 
 /**
  * G_TYPE_PARAM_FLAGS:
- *
+ * 
  * The #GType of #GParamSpecFlags.
  */
 #define	G_TYPE_PARAM_FLAGS		   (g_param_spec_types[11])
 /**
  * G_IS_PARAM_SPEC_FLAGS:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_FLAGS.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_FLAGS(pspec)       (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_FLAGS))
 /**
  * G_PARAM_SPEC_FLAGS:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecFlags.
  */
 #define G_PARAM_SPEC_FLAGS(pspec)          (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_FLAGS, GParamSpecFlags))
 
 /**
  * G_TYPE_PARAM_FLOAT:
- *
+ * 
  * The #GType of #GParamSpecFloat.
  */
 #define	G_TYPE_PARAM_FLOAT		   (g_param_spec_types[12])
 /**
  * G_IS_PARAM_SPEC_FLOAT:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_FLOAT.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_FLOAT(pspec)       (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_FLOAT))
 /**
  * G_PARAM_SPEC_FLOAT:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecFloat.
  */
 #define G_PARAM_SPEC_FLOAT(pspec)          (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_FLOAT, GParamSpecFloat))
 
 /**
  * G_TYPE_PARAM_DOUBLE:
- *
+ * 
  * The #GType of #GParamSpecDouble.
  */
 #define	G_TYPE_PARAM_DOUBLE		   (g_param_spec_types[13])
 /**
  * G_IS_PARAM_SPEC_DOUBLE:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_DOUBLE.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_DOUBLE(pspec)      (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_DOUBLE))
 /**
  * G_PARAM_SPEC_DOUBLE:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecDouble.
  */
 #define G_PARAM_SPEC_DOUBLE(pspec)         (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_DOUBLE, GParamSpecDouble))
 
 /**
  * G_TYPE_PARAM_STRING:
- *
+ * 
  * The #GType of #GParamSpecString.
  */
 #define	G_TYPE_PARAM_STRING		   (g_param_spec_types[14])
 /**
  * G_IS_PARAM_SPEC_STRING:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_STRING.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_STRING(pspec)      (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_STRING))
 /**
  * G_PARAM_SPEC_STRING:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Casts a #GParamSpec instance into a #GParamSpecString.
  */
 #define G_PARAM_SPEC_STRING(pspec)         (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_STRING, GParamSpecString))
 
 /**
  * G_TYPE_PARAM_PARAM:
- *
+ * 
  * The #GType of #GParamSpecParam.
  */
 #define	G_TYPE_PARAM_PARAM		   (g_param_spec_types[15])
 /**
  * G_IS_PARAM_SPEC_PARAM:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_PARAM.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_PARAM(pspec)       (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_PARAM))
 /**
  * G_PARAM_SPEC_PARAM:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Casts a #GParamSpec instance into a #GParamSpecParam.
  */
 #define G_PARAM_SPEC_PARAM(pspec)          (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_PARAM, GParamSpecParam))
 
 /**
  * G_TYPE_PARAM_BOXED:
- *
+ * 
  * The #GType of #GParamSpecBoxed.
  */
 #define	G_TYPE_PARAM_BOXED		   (g_param_spec_types[16])
 /**
  * G_IS_PARAM_SPEC_BOXED:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_BOXED.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_BOXED(pspec)       (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_BOXED))
 /**
  * G_PARAM_SPEC_BOXED:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecBoxed.
  */
 #define G_PARAM_SPEC_BOXED(pspec)          (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_BOXED, GParamSpecBoxed))
 
 /**
  * G_TYPE_PARAM_POINTER:
- *
+ * 
  * The #GType of #GParamSpecPointer.
  */
 #define	G_TYPE_PARAM_POINTER		   (g_param_spec_types[17])
 /**
  * G_IS_PARAM_SPEC_POINTER:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_POINTER.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_POINTER(pspec)     (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_POINTER))
 /**
  * G_PARAM_SPEC_POINTER:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Casts a #GParamSpec instance into a #GParamSpecPointer.
  */
 #define G_PARAM_SPEC_POINTER(pspec)        (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_POINTER, GParamSpecPointer))
 
 /**
  * G_TYPE_PARAM_VALUE_ARRAY:
- *
+ * 
  * The #GType of #GParamSpecValueArray.
  *
  * Deprecated: 2.32: Use #GArray instead of #GValueArray
@@ -26611,9 +26611,9 @@ G_BEGIN_DECLS
 /**
  * G_IS_PARAM_SPEC_VALUE_ARRAY:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_VALUE_ARRAY.
- *
+ * 
  * Returns: %TRUE on success.
  *
  * Deprecated: 2.32: Use #GArray instead of #GValueArray
@@ -26622,7 +26622,7 @@ G_BEGIN_DECLS
 /**
  * G_PARAM_SPEC_VALUE_ARRAY:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Cast a #GParamSpec instance into a #GParamSpecValueArray.
  *
  * Deprecated: 2.32: Use #GArray instead of #GValueArray
@@ -26631,41 +26631,41 @@ G_BEGIN_DECLS
 
 /**
  * G_TYPE_PARAM_OBJECT:
- *
+ * 
  * The #GType of #GParamSpecObject.
  */
 #define	G_TYPE_PARAM_OBJECT		   (g_param_spec_types[19])
 /**
  * G_IS_PARAM_SPEC_OBJECT:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_OBJECT.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_IS_PARAM_SPEC_OBJECT(pspec)      (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_OBJECT))
 /**
  * G_PARAM_SPEC_OBJECT:
  * @pspec: a valid #GParamSpec instance
- *
+ * 
  * Casts a #GParamSpec instance into a #GParamSpecObject.
  */
 #define G_PARAM_SPEC_OBJECT(pspec)         (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_OBJECT, GParamSpecObject))
 
 /**
  * G_TYPE_PARAM_OVERRIDE:
- *
+ * 
  * The #GType of #GParamSpecOverride.
- *
+ * 
  * Since: 2.4
  */
 #define	G_TYPE_PARAM_OVERRIDE		   (g_param_spec_types[20])
 /**
  * G_IS_PARAM_SPEC_OVERRIDE:
  * @pspec: a #GParamSpec
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_OVERRIDE.
- *
+ * 
  * Since: 2.4
  * Returns: %TRUE on success.
  */
@@ -26673,37 +26673,37 @@ G_BEGIN_DECLS
 /**
  * G_PARAM_SPEC_OVERRIDE:
  * @pspec: a #GParamSpec
- *
+ * 
  * Casts a #GParamSpec into a #GParamSpecOverride.
- *
+ * 
  * Since: 2.4
  */
 #define G_PARAM_SPEC_OVERRIDE(pspec)       (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_OVERRIDE, GParamSpecOverride))
 
 /**
  * G_TYPE_PARAM_GTYPE:
- *
+ * 
  * The #GType of #GParamSpecGType.
- *
+ * 
  * Since: 2.10
  */
 #define	G_TYPE_PARAM_GTYPE		   (g_param_spec_types[21])
 /**
  * G_IS_PARAM_SPEC_GTYPE:
  * @pspec: a #GParamSpec
- *
+ * 
  * Checks whether the given #GParamSpec is of type %G_TYPE_PARAM_GTYPE.
- *
+ * 
  * Since: 2.10
- * Returns: %TRUE on success.
+ * Returns: %TRUE on success. 
  */
 #define G_IS_PARAM_SPEC_GTYPE(pspec)       (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM_GTYPE))
 /**
  * G_PARAM_SPEC_GTYPE:
  * @pspec: a #GParamSpec
- *
+ * 
  * Casts a #GParamSpec into a #GParamSpecGType.
- *
+ * 
  * Since: 2.10
  */
 #define G_PARAM_SPEC_GTYPE(pspec)          (G_TYPE_CHECK_INSTANCE_CAST ((pspec), G_TYPE_PARAM_GTYPE, GParamSpecGType))
@@ -26768,13 +26768,13 @@ typedef struct _GParamSpecVariant    GParamSpecVariant;
  * @minimum: minimum value for the property specified
  * @maximum: maximum value for the property specified
  * @default_value: default value for the property specified
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for character properties.
  */
 struct _GParamSpecChar
 {
   GParamSpec    parent_instance;
-
+  
   gint8         minimum;
   gint8         maximum;
   gint8         default_value;
@@ -26785,13 +26785,13 @@ struct _GParamSpecChar
  * @minimum: minimum value for the property specified
  * @maximum: maximum value for the property specified
  * @default_value: default value for the property specified
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for unsigned character properties.
  */
 struct _GParamSpecUChar
 {
   GParamSpec    parent_instance;
-
+  
   guint8        minimum;
   guint8        maximum;
   guint8        default_value;
@@ -26800,13 +26800,13 @@ struct _GParamSpecUChar
  * GParamSpecBoolean:
  * @parent_instance: private #GParamSpec portion
  * @default_value: default value for the property specified
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for boolean properties.
  */
 struct _GParamSpecBoolean
 {
   GParamSpec    parent_instance;
-
+  
   gboolean      default_value;
 };
 /**
@@ -26815,13 +26815,13 @@ struct _GParamSpecBoolean
  * @minimum: minimum value for the property specified
  * @maximum: maximum value for the property specified
  * @default_value: default value for the property specified
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for integer properties.
  */
 struct _GParamSpecInt
 {
   GParamSpec    parent_instance;
-
+  
   gint          minimum;
   gint          maximum;
   gint          default_value;
@@ -26832,13 +26832,13 @@ struct _GParamSpecInt
  * @minimum: minimum value for the property specified
  * @maximum: maximum value for the property specified
  * @default_value: default value for the property specified
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for unsigned integer properties.
  */
 struct _GParamSpecUInt
 {
   GParamSpec    parent_instance;
-
+  
   guint         minimum;
   guint         maximum;
   guint         default_value;
@@ -26849,13 +26849,13 @@ struct _GParamSpecUInt
  * @minimum: minimum value for the property specified
  * @maximum: maximum value for the property specified
  * @default_value: default value for the property specified
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for long integer properties.
  */
 struct _GParamSpecLong
 {
   GParamSpec    parent_instance;
-
+  
   glong         minimum;
   glong         maximum;
   glong         default_value;
@@ -26866,13 +26866,13 @@ struct _GParamSpecLong
  * @minimum: minimum value for the property specified
  * @maximum: maximum value for the property specified
  * @default_value: default value for the property specified
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for unsigned long integer properties.
  */
 struct _GParamSpecULong
 {
   GParamSpec    parent_instance;
-
+  
   gulong        minimum;
   gulong        maximum;
   gulong        default_value;
@@ -26883,13 +26883,13 @@ struct _GParamSpecULong
  * @minimum: minimum value for the property specified
  * @maximum: maximum value for the property specified
  * @default_value: default value for the property specified
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for 64bit integer properties.
  */
 struct _GParamSpecInt64
 {
   GParamSpec    parent_instance;
-
+  
   gint64        minimum;
   gint64        maximum;
   gint64        default_value;
@@ -26900,13 +26900,13 @@ struct _GParamSpecInt64
  * @minimum: minimum value for the property specified
  * @maximum: maximum value for the property specified
  * @default_value: default value for the property specified
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for unsigned 64bit integer properties.
  */
 struct _GParamSpecUInt64
 {
   GParamSpec    parent_instance;
-
+  
   guint64       minimum;
   guint64       maximum;
   guint64       default_value;
@@ -26915,13 +26915,13 @@ struct _GParamSpecUInt64
  * GParamSpecUnichar:
  * @parent_instance: private #GParamSpec portion
  * @default_value: default value for the property specified
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for unichar (unsigned integer) properties.
  */
 struct _GParamSpecUnichar
 {
   GParamSpec    parent_instance;
-
+  
   gunichar      default_value;
 };
 /**
@@ -26929,14 +26929,14 @@ struct _GParamSpecUnichar
  * @parent_instance: private #GParamSpec portion
  * @enum_class: the #GEnumClass for the enum
  * @default_value: default value for the property specified
- *
- * A #GParamSpec derived structure that contains the meta data for enum
+ * 
+ * A #GParamSpec derived structure that contains the meta data for enum 
  * properties.
  */
 struct _GParamSpecEnum
 {
   GParamSpec    parent_instance;
-
+  
   GEnumClass   *enum_class;
   gint          default_value;
 };
@@ -26945,14 +26945,14 @@ struct _GParamSpecEnum
  * @parent_instance: private #GParamSpec portion
  * @flags_class: the #GFlagsClass for the flags
  * @default_value: default value for the property specified
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for flags
  * properties.
  */
 struct _GParamSpecFlags
 {
   GParamSpec    parent_instance;
-
+  
   GFlagsClass  *flags_class;
   guint         default_value;
 };
@@ -26964,13 +26964,13 @@ struct _GParamSpecFlags
  * @default_value: default value for the property specified
  * @epsilon: values closer than @epsilon will be considered identical
  *  by g_param_values_cmp(); the default value is 1e-30.
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for float properties.
  */
 struct _GParamSpecFloat
 {
   GParamSpec    parent_instance;
-
+  
   gfloat        minimum;
   gfloat        maximum;
   gfloat        default_value;
@@ -26984,13 +26984,13 @@ struct _GParamSpecFloat
  * @default_value: default value for the property specified
  * @epsilon: values closer than @epsilon will be considered identical
  *  by g_param_values_cmp(); the default value is 1e-90.
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for double properties.
  */
 struct _GParamSpecDouble
 {
   GParamSpec    parent_instance;
-
+  
   gdouble       minimum;
   gdouble       maximum;
   gdouble       default_value;
@@ -27005,14 +27005,14 @@ struct _GParamSpecDouble
  * @substitutor: the replacement byte for bytes which don't match @cset_first or @cset_nth.
  * @null_fold_if_empty: replace empty string by %NULL
  * @ensure_non_null: replace %NULL strings by an empty string
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for string
  * properties.
  */
 struct _GParamSpecString
 {
   GParamSpec    parent_instance;
-
+  
   gchar        *default_value;
   gchar        *cset_first;
   gchar        *cset_nth;
@@ -27023,7 +27023,7 @@ struct _GParamSpecString
 /**
  * GParamSpecParam:
  * @parent_instance: private #GParamSpec portion
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for %G_TYPE_PARAM
  * properties.
  */
@@ -27034,7 +27034,7 @@ struct _GParamSpecParam
 /**
  * GParamSpecBoxed:
  * @parent_instance: private #GParamSpec portion
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for boxed properties.
  */
 struct _GParamSpecBoxed
@@ -27044,7 +27044,7 @@ struct _GParamSpecBoxed
 /**
  * GParamSpecPointer:
  * @parent_instance: private #GParamSpec portion
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for pointer properties.
  */
 struct _GParamSpecPointer
@@ -27056,7 +27056,7 @@ struct _GParamSpecPointer
  * @parent_instance: private #GParamSpec portion
  * @element_spec: a #GParamSpec describing the elements contained in arrays of this property, may be %NULL
  * @fixed_n_elements: if greater than 0, arrays of this property will always have this many elements
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for #GValueArray properties.
  */
 struct _GParamSpecValueArray
@@ -27068,7 +27068,7 @@ struct _GParamSpecValueArray
 /**
  * GParamSpecObject:
  * @parent_instance: private #GParamSpec portion
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for object properties.
  */
 struct _GParamSpecObject
@@ -27077,7 +27077,7 @@ struct _GParamSpecObject
 };
 /**
  * GParamSpecOverride:
- *
+ * 
  * This is a type of #GParamSpec type that simply redirects operations to
  * another paramspec.  All operations other than getting or
  * setting the value are redirected, including accessing the nick and
@@ -27086,7 +27086,7 @@ struct _GParamSpecObject
  * property. #GParamSpecOverride is used in implementing
  * g_object_class_override_property(), and will not be directly useful
  * unless you are implementing a new base type similar to GObject.
- *
+ * 
  * Since: 2.4
  */
 struct _GParamSpecOverride
@@ -27099,9 +27099,9 @@ struct _GParamSpecOverride
  * GParamSpecGType:
  * @parent_instance: private #GParamSpec portion
  * @is_a_type: a #GType whose subtypes can occur as values
- *
+ * 
  * A #GParamSpec derived structure that contains the meta data for #GType properties.
- *
+ * 
  * Since: 2.10
  */
 struct _GParamSpecGType
@@ -27400,11 +27400,11 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC(GTypeModule, g_object_unref)
 /**
  * GTypeModule:
  * @name: the name of the module
- *
- * The members of the GTypeModule structure should not
+ * 
+ * The members of the GTypeModule structure should not 
  * be accessed directly, except for the @name field.
  */
-struct _GTypeModule
+struct _GTypeModule 
 {
   GObject parent_instance;
 
@@ -27422,8 +27422,8 @@ struct _GTypeModule
  * @load: loads the module and registers one or more types using
  *  g_type_module_register_type().
  * @unload: unloads the module
- *
- * In order to implement dynamic loading of types based on #GTypeModule,
+ * 
+ * In order to implement dynamic loading of types based on #GTypeModule, 
  * the @load and @unload functions in #GTypeModuleClass must be implemented.
  */
 struct _GTypeModuleClass
@@ -27448,16 +27448,16 @@ struct _GTypeModuleClass
  * @t_n: The name of the new type, in lowercase, with words
  *  separated by '_'.
  * @T_P: The #GType of the parent type.
- *
+ * 
  * A convenience macro for dynamic type implementations, which declares a
- * class initialization function, an instance initialization function (see
- * #GTypeInfo for information about these) and a static variable named
+ * class initialization function, an instance initialization function (see 
+ * #GTypeInfo for information about these) and a static variable named 
  * `t_n`_parent_class pointing to the parent class. Furthermore,
  * it defines a `*_get_type()` and a static `*_register_type()` functions
  * for use in your `module_init()`.
  *
  * See G_DEFINE_DYNAMIC_TYPE_EXTENDED() for an example.
- *
+ * 
  * Since: 2.14
  */
 #define G_DEFINE_DYNAMIC_TYPE(TN, t_n, T_P)          G_DEFINE_DYNAMIC_TYPE_EXTENDED (TN, t_n, T_P, 0, {})
@@ -27469,10 +27469,10 @@ struct _GTypeModuleClass
  * @TYPE_PARENT: The #GType of the parent type.
  * @flags: #GTypeFlags to pass to g_type_module_register_type()
  * @CODE: Custom code that gets inserted in the *_get_type() function.
- *
+ * 
  * A more general version of G_DEFINE_DYNAMIC_TYPE() which
  * allows to specify #GTypeFlags and custom code.
- *
+ * 
  * |[
  * G_DEFINE_DYNAMIC_TYPE_EXTENDED (GtkGadget,
  *                                 gtk_gadget,
@@ -27486,22 +27486,22 @@ struct _GTypeModuleClass
  * static void     gtk_gadget_init              (GtkGadget      *self);
  * static void     gtk_gadget_class_init        (GtkGadgetClass *klass);
  * static void     gtk_gadget_class_finalize    (GtkGadgetClass *klass);
- *
+ * 
  * static gpointer gtk_gadget_parent_class = NULL;
  * static GType    gtk_gadget_type_id = 0;
- *
+ * 
  * static void     gtk_gadget_class_intern_init (gpointer klass)
  * {
- *   gtk_gadget_parent_class = g_type_class_peek_parent (klass);
- *   gtk_gadget_class_init ((GtkGadgetClass*) klass);
+ *   gtk_gadget_parent_class = g_type_class_peek_parent (klass); 
+ *   gtk_gadget_class_init ((GtkGadgetClass*) klass); 
  * }
- *
+ * 
  * GType
  * gtk_gadget_get_type (void)
  * {
  *   return gtk_gadget_type_id;
  * }
- *
+ * 
  * static void
  * gtk_gadget_register_type (GTypeModule *type_module)
  * {
@@ -27514,7 +27514,7 @@ struct _GTypeModuleClass
  *     NULL,   // class_data
  *     sizeof (GtkGadget),
  *     0,      // n_preallocs
- *     (GInstanceInitFunc) gtk_gadget_init,
+ *     (GInstanceInitFunc) gtk_gadget_init, 
  *     NULL    // value_table
  *   };
  *   gtk_gadget_type_id = g_type_module_register_type (type_module,
@@ -27530,7 +27530,7 @@ struct _GTypeModuleClass
  *   }
  * }
  * ]|
- *
+ * 
  * Since: 2.14
  */
 #define G_DEFINE_DYNAMIC_TYPE_EXTENDED(TypeName, type_name, TYPE_PARENT, flags, CODE) \
@@ -27692,7 +27692,7 @@ typedef struct _GTypePluginClass		   GTypePluginClass;
 /**
  * GTypePluginUse:
  * @plugin: the #GTypePlugin whose use count should be increased
- *
+ * 
  * The type of the @use_plugin function of #GTypePluginClass, which gets called
  * to increase the use count of @plugin.
  */
@@ -27700,7 +27700,7 @@ typedef void  (*GTypePluginUse)			  (GTypePlugin     *plugin);
 /**
  * GTypePluginUnuse:
  * @plugin: the #GTypePlugin whose use count should be decreased
- *
+ * 
  * The type of the @unuse_plugin function of #GTypePluginClass.
  */
 typedef void  (*GTypePluginUnuse)		  (GTypePlugin     *plugin);
@@ -27710,7 +27710,7 @@ typedef void  (*GTypePluginUnuse)		  (GTypePlugin     *plugin);
  * @g_type: the #GType whose info is completed
  * @info: the #GTypeInfo struct to fill in
  * @value_table: the #GTypeValueTable to fill in
- *
+ * 
  * The type of the @complete_type_info function of #GTypePluginClass.
  */
 typedef void  (*GTypePluginCompleteTypeInfo)	  (GTypePlugin     *plugin,
@@ -27724,7 +27724,7 @@ typedef void  (*GTypePluginCompleteTypeInfo)	  (GTypePlugin     *plugin,
  *  is added
  * @interface_type: the #GType of the interface whose info is completed
  * @info: the #GInterfaceInfo to fill in
- *
+ * 
  * The type of the @complete_interface_info function of #GTypePluginClass.
  */
 typedef void  (*GTypePluginCompleteInterfaceInfo) (GTypePlugin     *plugin,
@@ -27733,21 +27733,21 @@ typedef void  (*GTypePluginCompleteInterfaceInfo) (GTypePlugin     *plugin,
 						   GInterfaceInfo  *info);
 /**
  * GTypePlugin:
- *
- * The GTypePlugin typedef is used as a placeholder
+ * 
+ * The GTypePlugin typedef is used as a placeholder 
  * for objects that implement the GTypePlugin interface.
  */
 /**
  * GTypePluginClass:
  * @use_plugin: Increases the use count of the plugin.
  * @unuse_plugin: Decreases the use count of the plugin.
- * @complete_type_info: Fills in the #GTypeInfo and
+ * @complete_type_info: Fills in the #GTypeInfo and 
  *  #GTypeValueTable structs for the type. The structs are initialized
  *  with `memset(s, 0, sizeof (s))` before calling this function.
- * @complete_interface_info: Fills in missing parts of the #GInterfaceInfo
+ * @complete_interface_info: Fills in missing parts of the #GInterfaceInfo 
  *  for the interface. The structs is initialized with
  *  `memset(s, 0, sizeof (s))` before calling this function.
- *
+ * 
  * The #GTypePlugin interface is used by the type system in order to handle
  * the lifecycle of dynamically loaded types.
  */
@@ -27755,7 +27755,7 @@ struct _GTypePluginClass
 {
   /*< private >*/
   GTypeInterface		   base_iface;
-
+  
   /*< public >*/
   GTypePluginUse		   use_plugin;
   GTypePluginUnuse		   unuse_plugin;
@@ -27829,7 +27829,7 @@ typedef struct _GValueArray GValueArray;
  * GValueArray:
  * @n_values: number of values contained in the array
  * @values: array of values
- *
+ * 
  * A #GValueArray contains an array of #GValue elements.
  */
 struct _GValueArray
@@ -27920,108 +27920,108 @@ G_BEGIN_DECLS
 /**
  * G_VALUE_HOLDS_CHAR:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_CHAR.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_CHAR(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_CHAR))
 /**
  * G_VALUE_HOLDS_UCHAR:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_UCHAR.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_UCHAR(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_UCHAR))
 /**
  * G_VALUE_HOLDS_BOOLEAN:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_BOOLEAN.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_BOOLEAN(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_BOOLEAN))
 /**
  * G_VALUE_HOLDS_INT:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_INT.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_INT(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_INT))
 /**
  * G_VALUE_HOLDS_UINT:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_UINT.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_UINT(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_UINT))
 /**
  * G_VALUE_HOLDS_LONG:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_LONG.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_LONG(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_LONG))
 /**
  * G_VALUE_HOLDS_ULONG:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_ULONG.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_ULONG(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_ULONG))
 /**
  * G_VALUE_HOLDS_INT64:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_INT64.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_INT64(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_INT64))
 /**
  * G_VALUE_HOLDS_UINT64:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_UINT64.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_UINT64(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_UINT64))
 /**
  * G_VALUE_HOLDS_FLOAT:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_FLOAT.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_FLOAT(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_FLOAT))
 /**
  * G_VALUE_HOLDS_DOUBLE:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_DOUBLE.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_DOUBLE(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_DOUBLE))
 /**
  * G_VALUE_HOLDS_STRING:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_STRING.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_STRING(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_STRING))
@@ -28041,24 +28041,24 @@ G_BEGIN_DECLS
 /**
  * G_VALUE_HOLDS_POINTER:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_POINTER.
- *
+ * 
  * Returns: %TRUE on success.
  */
 #define G_VALUE_HOLDS_POINTER(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_POINTER))
 /**
  * G_TYPE_GTYPE:
- *
+ * 
  * The type for #GType.
  */
 #define	G_TYPE_GTYPE			 (g_gtype_get_type())
 /**
  * G_VALUE_HOLDS_GTYPE:
  * @value: a valid #GValue structure
- *
+ * 
  * Checks whether the given #GValue can hold values of type %G_TYPE_GTYPE.
- *
+ * 
  * Since: 2.12
  * Returns: %TRUE on success.
  */
@@ -28194,7 +28194,7 @@ void g_value_set_string_take_ownership          (GValue            *value,
 /* humpf, need a C representable type name for G_TYPE_STRING */
 /**
  * gchararray:
- *
+ * 
  * A C representable type name for #G_TYPE_STRING.
  */
 typedef gchar* gchararray;
@@ -29081,7 +29081,7 @@ typedef enum {
  *
  * GResourceFlags give information about a particular file inside a resource
  * bundle.
- *
+ * 
  * Since: 2.32
  **/
 typedef enum {
@@ -29094,7 +29094,7 @@ typedef enum {
  * @G_RESOURCE_LOOKUP_FLAGS_NONE: No flags set.
  *
  * GResourceLookupFlags determine how resource path lookups are handled.
- *
+ * 
  * Since: 2.32
  **/
 typedef enum /*< flags >*/ {
@@ -42374,7 +42374,7 @@ G_END_DECLS
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/.
+ * GLib at ftp://ftp.gtk.org/pub/gtk/. 
  */
 
 #ifndef __GMODULE_H__
@@ -50636,9 +50636,9 @@ G_BEGIN_DECLS
  * @get_mount: Gets a #GMount representing the mounted volume. Returns %NULL if the #GVolume is not mounted.
  * @can_mount: Returns %TRUE if the #GVolume can be mounted.
  * @can_eject: Checks if a #GVolume can be ejected.
- * @mount_fn: Mounts a given #GVolume.
- *     #GVolume implementations must emit the #GMountOperation::aborted
- *     signal before completing a mount operation that is aborted while
+ * @mount_fn: Mounts a given #GVolume. 
+ *     #GVolume implementations must emit the #GMountOperation::aborted 
+ *     signal before completing a mount operation that is aborted while 
  *     awaiting input from the user through a #GMountOperation instance.
  * @mount_finish: Finishes a mount operation.
  * @eject: Ejects a given #GVolume.
@@ -51112,7 +51112,7 @@ G_END_DECLS
 #define __JSON_GLIB_INSIDE__
 
 /* json-types.h - JSON data types
- *
+ * 
  * This file is part of JSON-GLib
  * Copyright (C) 2007  OpenedHand Ltd.
  * Copyright (C) 2009  Intel Corp.
@@ -51142,7 +51142,7 @@ G_END_DECLS
 #endif
 
 /* json-version-macros.h - JSON-GLib symbol versioning macros
- *
+ * 
  * This file is part of JSON-GLib
  * Copyright © 2014  Emmanuele Bassi
  *
@@ -51168,7 +51168,7 @@ G_END_DECLS
 #endif
 
 /* json-version.h - JSON-GLib versioning information
- *
+ * 
  * This file is part of JSON-GLib
  * Copyright (C) 2007  OpenedHand Ltd.
  * Copyright (C) 2009  Intel Corp.
@@ -51830,7 +51830,7 @@ gboolean              json_object_equal              (gconstpointer a,
  * All the fields in the #JsonObjectIter structure are private and should
  * never be accessed directly.
  *
- * Since: 1.2
+ * Since: 1.2 
  */
 typedef struct {
   /*< private >*/
@@ -52073,7 +52073,7 @@ G_END_DECLS
 
 #endif /* __JSON_BUILDER_H__ */
 /* json-generator.h - JSON streams generator
- *
+ * 
  * This file is part of JSON-GLib
  * Copyright (C) 2007  OpenedHand Ltd.
  * Copyright (C) 2009  Intel Corp.
@@ -52199,7 +52199,7 @@ G_END_DECLS
 
 #endif /* __JSON_GENERATOR_H__ */
 /* json-parser.h - JSON streams parser
- *
+ * 
  * This file is part of JSON-GLib
  * Copyright (C) 2007  OpenedHand Ltd.
  * Copyright (C) 2009  Intel Corp.
@@ -52273,7 +52273,7 @@ typedef enum {
 
 /**
  * JsonParser:
- *
+ * 
  * JSON data streams parser. The contents of the #JsonParser structure are
  * private and should only be accessed via the provided API.
  */
@@ -52322,7 +52322,7 @@ struct _JsonParserClass
                           JsonArray    *array);
 
   void (* parse_end)     (JsonParser   *parser);
-
+  
   void (* error)         (JsonParser   *parser,
                           const GError *error);
 
@@ -52502,7 +52502,7 @@ G_END_DECLS
 
 #endif /* __JSON_PATH_H__ */
 /* json-reader.h - JSON cursor parser
- *
+ * 
  * This file is part of JSON-GLib
  * Copyright (C) 2010  Intel Corp.
  *
@@ -52676,7 +52676,7 @@ G_END_DECLS
 
 #endif /* __JSON_READER_H__ */
 /* json-utils.h - JSON utility API
- *
+ * 
  * This file is part of JSON-GLib
  * Copyright 2015  Emmanuele Bassi
  *
@@ -52751,7 +52751,7 @@ G_END_DECLS
 
 
 /* json-gobject.h - JSON GObject integration
- *
+ * 
  * This file is part of JSON-GLib
  * Copyright (C) 2007  OpenedHand Ltd.
  * Copyright (C) 2009  Intel Corp.
