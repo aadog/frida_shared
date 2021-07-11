@@ -66,7 +66,26 @@ funcs=[
     "g_input_stream_close",
     "g_output_stream_close",
     "g_bytes_get_data",
-    "g_object_ref"
+    "g_object_ref",
+    "g_hash_table_unref",
+    "g_hash_table_ref",
+    "g_hash_table_iter_init",
+    "g_hash_table_iter_next",
+    "g_variant_is_of_type",
+    "g_variant_get_string",
+    "g_variant_get_int64",
+    "g_variant_get_boolean",
+    "g_variant_get_variant",
+    "g_variant_get_fixed_array",
+    "g_variant_iter_next_value",
+    "g_variant_get_child_value",
+    "g_variant_unref",
+    "g_variant_iter_init",
+    "g_variant_type_new",
+    "g_variant_type_free",
+    "g_variant_iter_new",
+    "g_variant_iter_free",
+    "g_variant_get_type_string"
 ]
 
 depstruct=[
