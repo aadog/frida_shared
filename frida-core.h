@@ -53534,6 +53534,9 @@ guint frida_injector_inject_library_file_sync (FridaInjector * self, guint pid, 
 void frida_injector_inject_library_blob (FridaInjector * self, guint pid, GBytes * blob, const gchar * entrypoint, const gchar * data, GCancellable * cancellable, GAsyncReadyCallback callback, gpointer user_data);
 guint frida_injector_inject_library_blob_finish (FridaInjector * self, GAsyncResult * result, GError ** error);
 guint frida_injector_inject_library_blob_sync (FridaInjector * self, guint pid, GBytes * blob, const gchar * entrypoint, const gchar * data, GCancellable * cancellable, GError ** error);
+void frida_injector_demonitor (FridaInjector * self, guint id, GCancellable * cancellable, GAsyncReadyCallback callback, gpointer user_data);
+void frida_injector_demonitor_finish (FridaInjector * self, GAsyncResult * result, GError ** error);
+void frida_injector_demonitor_sync (FridaInjector * self, guint id, GCancellable * cancellable, GError ** error);
 void frida_injector_demonitor_and_clone_state (FridaInjector * self, guint id, GCancellable * cancellable, GAsyncReadyCallback callback, gpointer user_data);
 guint frida_injector_demonitor_and_clone_state_finish (FridaInjector * self, GAsyncResult * result, GError ** error);
 guint frida_injector_demonitor_and_clone_state_sync (FridaInjector * self, guint id, GCancellable * cancellable, GError ** error);
