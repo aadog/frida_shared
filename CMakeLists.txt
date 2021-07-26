@@ -18,10 +18,8 @@ link_directories(${PROJECT_SOURCE_DIR})
 
 if(MSVC)
     set(CMAKE_MSVC_RUNTIME_LIBRARY MultiThreaded)
-    add_library(frida_shared SHARED library.c library.h frida.def)
-else()
-    add_library(frida_shared SHARED library.c library.h)
+    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /DEF:${PROJECT_SOURCE_DIR}/frida.def /NODEFAULTLIB:msvcrt.lib /NODEFAULTLIB:msvcrtd.lib")
 endif()
-
-
+add_library(frida_shared SHARED library.c library.h import.c)
 target_link_libraries(frida_shared frida-core)
+
