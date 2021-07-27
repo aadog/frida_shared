@@ -1,3 +1,5 @@
 /cmake-build-debug/cmake-build-release
 /cmake-build-release-linux
 /cmake-build-release
+/devkit/windows/frida-core.lib
+/devkit/linux/libfrida-core.a
