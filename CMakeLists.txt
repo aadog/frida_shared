@@ -9,6 +9,7 @@ ELSEIF (UNIX)
     set(platform "linux")
 ENDIF ()
 
+message(info "${PROJECT_SOURCE_DIR}")
 
 set(CMAKE_C_STANDARD 11)
 
@@ -24,6 +25,6 @@ endif()
 
 
 
-add_library(frida_shared SHARED library.c library.h devkit/${platform}/frida-core.h devkit/${platform}/import.c)
+add_library(frida_shared SHARED ${PROJECT_SOURCE_DIR}/library.c ${PROJECT_SOURCE_DIR}/library.h devkit/${platform}/frida-core.h devkit/${platform}/import.c)
 target_link_libraries(frida_shared frida-core)
 

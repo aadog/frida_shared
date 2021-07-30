@@ -4729,11 +4729,11 @@ LIBFOO_1.0 {
         frida_authentication_service_get_type;
         frida_static_authentication_service_get_type;
         frida_file_monitor_get_type;
-        g_strlen;
-        g_error_get_message;
-        g_error_get_code;
-        g_hash_table_iter_new;
-        g_hash_table_iter_free;
+        _frida_g_strlen;
+        _frida_g_error_get_message;
+        _frida_g_error_get_code;
+        _frida_g_hash_table_iter_new;
+        _frida_g_hash_table_iter_free;
     local:
         *;
 };
