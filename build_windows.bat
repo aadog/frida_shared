@@ -1,5 +1,5 @@
 git pull
-python3 pre_windows.py
+python pre_windows.py
 mkdir build_windows
 cd build_windows
 call "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
