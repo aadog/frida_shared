@@ -26,4 +26,4 @@ extract("./frida-core-devkit.tar.xz","./")
 delfile("./frida-core-example.c")
 delfile("./frida-core-devkit.tar.xz")
 
-os.system("python ./build_linux_map.py")
+os.system("python3 ./build_linux_map.py")
