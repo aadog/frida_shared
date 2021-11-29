@@ -14,6 +14,7 @@ EXPORTS
     g_bytes_hash
     g_bytes_equal
     g_bytes_compare
+    g_bytes_get_region
     g_free
     g_hash_table_iter_init
     g_hash_table_iter_next

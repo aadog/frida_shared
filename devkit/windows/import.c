@@ -17,6 +17,7 @@ void ____Imp____(){
     IMPORT(g_bytes_hash);
     IMPORT(g_bytes_equal);
     IMPORT(g_bytes_compare);
+    IMPORT(g_bytes_get_region);
     IMPORT(g_free);
     IMPORT(g_hash_table_iter_init);
     IMPORT(g_hash_table_iter_next);
