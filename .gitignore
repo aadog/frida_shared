@@ -3,3 +3,5 @@
 /cmake-build-release
 /devkit/windows/frida-core.lib
 /devkit/linux/libfrida-core.a
+/devkit/windows/frida-core.h
+/__pycache__
